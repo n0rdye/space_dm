@@ -11,7 +11,7 @@ public class task : MonoBehaviour
     void Start()
     {
         tasks = new save_load().loadt();
-        message_text.text = tasks.message;
+        set_message("");
     }
 
     public void set_message(string text)

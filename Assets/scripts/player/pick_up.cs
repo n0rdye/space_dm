@@ -8,11 +8,21 @@ public class pick_up : MonoBehaviour
     public drop_stats drop_stats;
     public task task;
 
+    void Start()
+    {
+       task = GameObject.FindGameObjectsWithTag("player")[0].GetComponent<task>();
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        task.set_message("");
+    }
     void OnTriggerStay(Collider other)
     {
 
         if (drop_stats.num <= 0)
         {
+            task = GameObject.FindGameObjectsWithTag("player")[0].GetComponent<task>();
             Destroy(this.gameObject);
         }
 
@@ -110,12 +120,34 @@ public class pick_up : MonoBehaviour
             // unlock lock weapons
             else if (drop_stats.type == drop_stats.types.unlock_weapon && drop_stats.num > 0)
             {
-
-                task.set_message("press E to pick up " + drop_stats.weapon.ToString());
+                drop_stats.num = 1;
                 string cw = drop_stats.weapon.ToString();
-                if (drop_stats.weapon != drop_stats.weapons.all && new save_load().loadw(cw).unlock == false)
+                if (drop_stats.weapon == drop_stats.weapons.next)
                 {
-                    drop_stats.num = 1;
+                    task.set_message("press E to pick up wext weapon");
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        inventory inv = other.gameObject.GetComponent<inventory>();
+                        foreach (var cwa in inv.var.weapons)
+                        {
+                            var weapon = new save_load().loadw(cwa);
+                            if (weapon.unlock == false)
+                            {
+                                weapon.unlock = true;
+                                new save_load().savew(cwa, weapon);
+                                inv.save();
+                                inv.load();
+                                inv.set_weapon(cwa);
+                                Debug.Log("weapon unlocked");
+                                drop_stats.num = 0;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (drop_stats.weapon != drop_stats.weapons.all && new save_load().loadw(cw).unlock == false)
+                {
+                    task.set_message("press E to pick up " + drop_stats.weapon.ToString());
                     Debug.Log("weapon");
                     Debug.Log(cw);
 
@@ -136,6 +168,7 @@ public class pick_up : MonoBehaviour
                 }
                 else if (drop_stats.weapon == drop_stats.weapons.all)
                 {
+                    task.set_message("press E to pick up all weapons");
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         inventory inv = other.gameObject.GetComponent<inventory>();
@@ -179,30 +212,46 @@ public class pick_up : MonoBehaviour
             }
             else if (drop_stats.type == drop_stats.types.lock_weapon && drop_stats.num > 0)
             {
+                drop_stats.num = 1;
                 task.set_message("press E to drop " + drop_stats.weapon.ToString());
                 string cw = drop_stats.weapon.ToString();
-                drop_stats.num = 1;
                 Debug.Log("weapon");
                 Debug.Log(cw);
-
+                if (Input.GetKeyDown(KeyCode.E) && drop_stats.weapon == drop_stats.weapons.current)
+                {
+                    inventory inv = other.gameObject.GetComponent<inventory>();
+                    weapon wp = new save_load().loadw(inv.var.weapon);
+                    wp.unlock = false;
+                    new save_load().savew(cw, wp);
+                    inv.var.weapon = "none";
+                    inv.save();
+                    inv.load();
+                    inv.set_weapon("none");
+                    Debug.Log("weapon locked");
+                    drop_stats.num = 0;
+                }
                 if (Input.GetKeyDown(KeyCode.E) && drop_stats.weapon == drop_stats.weapons.all)
                 {
+                    task.set_message("press E to drop all weapons");
                     inventory inv = other.gameObject.GetComponent<inventory>();
                     foreach (var cwa in inv.var.weapons)
                     {
-                        weapon wp = new save_load().loadw(cwa);
-                        wp.unlock = false;
-                        new save_load().savew(cwa, wp);
-                        inv.var.weapon = "none";
-                        inv.save();
-                        inv.load();
-                        inv.set_weapon("none");
-                        Debug.Log("all locked");
+                        if (cwa != "none"){
+                            weapon wp = new save_load().loadw(cwa);
+                            wp.unlock = false;
+                            new save_load().savew(cwa, wp);
+                            inv.var.weapon = "none";
+                            inv.save();
+                            inv.load();
+                            inv.set_weapon("none");
+                            Debug.Log("all locked");
+                        }
                     }
                     drop_stats.num = 0;
                 }
                 else if (Input.GetKeyDown(KeyCode.E))
                 {
+                    task.set_message("press E to drop " +cw );
                     inventory inv = other.gameObject.GetComponent<inventory>();
                     weapon wp = new save_load().loadw(cw);
                     wp.unlock = false;
@@ -212,7 +261,7 @@ public class pick_up : MonoBehaviour
                     inv.load();
                     inv.set_weapon("none");
                     Debug.Log("weapon locked");
-                    drop_stats.num--;
+                    drop_stats.num = 0;
                 }
 
             }

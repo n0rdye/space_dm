@@ -63,15 +63,15 @@ public class save_load : MonoBehaviour
         File.WriteAllText(savefile, jsonString);
         //Debug.Log("weapon saved");
     }
-    public void add_ammo(string name, int ammo)
-    {
-        string savefile = Application.persistentDataPath + "/weapon/" + name + ".json";
-        weapon wp = loadw(name);
-        wp.inv_ammo += ammo;
-        string jsonString = JsonUtility.ToJson(wp);
-        File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
-    }
+    //public void add_ammo(string name, int ammo)
+    //{
+    //    string savefile = Application.persistentDataPath + "/weapon/" + name + ".json";
+    //    weapon wp = loadw(name);
+    //    wp.inv_ammo += ammo;
+    //    string jsonString = JsonUtility.ToJson(wp);
+    //    File.WriteAllText(savefile, jsonString);
+    //    //Debug.Log("weapon saved");
+    //}
 
     public void savet(task_vars input)
     {
