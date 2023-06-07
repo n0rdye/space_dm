@@ -59,7 +59,7 @@ public class shooting : MonoBehaviour
 
         }
 
-        if (stats.cur_ammo <= stats.max_ammo - 1 && !reloading)
+        if (stats.cur_ammo <= stats.max_ammo - 1 && !reloading && stats.inv_ammo > 0)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {

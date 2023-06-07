@@ -48,8 +48,13 @@ public class pick_up : MonoBehaviour
                     wp.inv_ammo += wp.max_ammo;
                     //new save_load().add_ammo(wp.name, wp.max_ammo);
                     new save_load().savew(drop_stats.weapon.ToString(),wp);
-                    Debug.Log("ammo added for " + drop_stats.weapon.ToString());
                     drop_stats.num--;
+                    if (new save_load().load().weapon == drop_stats.weapon.ToString())
+                    {
+                        shooting wps = other.gameObject.GetComponent<shooting>();
+                        wps.load();
+                    }
+                    Debug.Log("ammo added for " + drop_stats.weapon.ToString());
                 }
             }
         }

@@ -14,6 +14,10 @@ public class inventory : MonoBehaviour
     public Canvas tab_menu;
 
     public Text health_text;
+    public Text[] player_text;
+    public Text materials_text;
+
+    public bool tab = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +42,10 @@ public class inventory : MonoBehaviour
     void Update()
     {
         health_text.text = var.health.ToString();
-        if(var.health > 100)
+        player_text[0].text = var.max_health.ToString();
+        player_text[1].text = var.dash_time.ToString();
+        materials_text.text = var.materials.ToString();
+        if (var.health > 100)
         {
             var.health = 100;
             save();
@@ -73,13 +80,27 @@ public class inventory : MonoBehaviour
             set_weapon("none");
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) || tab == true)
         {
             tab_menu.gameObject.SetActive(true);
+            foreach (var item in weapons)
+            {
+                if (item.activeSelf)
+                {
+                    item.GetComponent<shooting>().canshoot = false;
+                }
+            }
         }
-        else if (Input.GetKeyUp(KeyCode.Tab))
+        else if (Input.GetKeyUp(KeyCode.Tab) || tab == false)
         {
             tab_menu.gameObject.SetActive(false);
+            foreach (var item in weapons)
+            {
+                if (item.activeSelf)
+                {
+                    item.GetComponent<shooting>().canshoot = true;
+                }
+            }
         }
     }
 
