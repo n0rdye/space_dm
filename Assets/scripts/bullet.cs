@@ -23,7 +23,7 @@ public class bullet : MonoBehaviour
             enemy_stats.hit();
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "player")
+        else if (collision.gameObject.tag == "player" && enemy)
         {
             var inv = collision.gameObject.GetComponent<inventory>();
             var stats = new save_load().load();
@@ -34,7 +34,7 @@ public class bullet : MonoBehaviour
             inv.load();
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "bullet")
+        else
         {
             Destroy(gameObject);
         }

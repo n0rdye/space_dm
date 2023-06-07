@@ -19,6 +19,7 @@ public class player_controler : MonoBehaviour
     public GameObject[] sync_obj;
     Plane surfacePlane = new Plane();
     Vector2 direction;
+    public float sync_time = 0;
 
     void Start () {
         Application.targetFrameRate = 59;
@@ -101,7 +102,7 @@ public class player_controler : MonoBehaviour
 
     IEnumerator RotateTowardsTarget(GameObject obj)
     {
-        float duration = 0.12f;
+        float duration = sync_time;
 
         // store the initial and target rotation once
         var startRotation = obj.transform.rotation;

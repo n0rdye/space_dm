@@ -17,13 +17,12 @@ public class inventory : MonoBehaviour
     public Text[] player_text;
     public Text materials_text;
 
-    public bool tab = false;
-
     // Start is called before the first frame update
     void Start()
     {
         load();
         set_weapon(var.weapon);
+        Cursor.visible = false;
     }
 
     public void load()
@@ -80,7 +79,7 @@ public class inventory : MonoBehaviour
             set_weapon("none");
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab) || tab == true)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             tab_menu.gameObject.SetActive(true);
             foreach (var item in weapons)
@@ -91,7 +90,7 @@ public class inventory : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Tab) || tab == false)
+        else if (Input.GetKeyUp(KeyCode.Tab))
         {
             tab_menu.gameObject.SetActive(false);
             foreach (var item in weapons)

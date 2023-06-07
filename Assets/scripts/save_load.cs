@@ -72,6 +72,33 @@ public class save_load : MonoBehaviour
         File.WriteAllText(savefile, jsonString);
         //Debug.Log("weapon saved");
     }
+
+    public void savet(task_vars input)
+    {
+        string savefile = Application.persistentDataPath + "/tasks.json";
+        string jsonString = JsonUtility.ToJson(input);
+        File.WriteAllText(savefile, jsonString);
+        //Debug.Log("weapon saved");
+    }
+
+    public task_vars loadt()
+    {
+        try
+        {
+            string savefile = Application.persistentDataPath + "/tasks.json";
+            string varfile = File.ReadAllText(savefile);
+            task_vars outp = JsonUtility.FromJson<task_vars>(varfile);
+            //Debug.Log("weapon loaded");
+            return outp;
+        }
+        catch (FileNotFoundException)
+        {
+            savet(new task_vars());
+            //Debug.Log("weapon loaded");
+            return new task_vars();
+        }
+    }
+
     public weapon loadw(string name)
     {
         try
