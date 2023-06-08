@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6490529
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2343,12 +2343,6 @@ MonoBehaviour:
     - 10
     - 0.5
     max_ammo:
-    - 10
-    - 0.5
-    health:
-    - 10
-    - 0.5
-    dash_time:
     - 10
     - 0.5
   weapon_stats_button: []
