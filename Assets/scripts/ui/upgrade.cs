@@ -35,9 +35,14 @@ public class upgrade : MonoBehaviour
         weapon_stats_button[2].onClick.AddListener(() => rspeed_upgrade());
     }
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider other)
     {
-        task.set_message("");
+        if (other.gameObject.tag == "player")
+        {
+            task.set_message("");
+            inv.tab(false);
+            ui_canvas.SetActive(false);
+        }
     }
 
     void OnTriggerStay(Collider other)
