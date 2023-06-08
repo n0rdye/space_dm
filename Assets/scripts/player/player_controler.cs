@@ -20,9 +20,10 @@ public class player_controler : MonoBehaviour
     Plane surfacePlane = new Plane();
     Vector2 direction;
     public float sync_time = 0;
+    public bool sync = true;
 
     void Start () {
-        Application.targetFrameRate = 59;
+        Application.targetFrameRate = 55;
         direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         var = new save_load().load();
         speed = var.speed;
@@ -72,7 +73,7 @@ public class player_controler : MonoBehaviour
             Camera.main.orthographicSize = 10;
         }
 
-        rotation_sync();
+        if (sync) rotation_sync();
 
         // дещ
         if (Input.GetKey(KeyCode.Space) && Time.time >= next)
@@ -92,11 +93,14 @@ public class player_controler : MonoBehaviour
 
     void rotation_sync()
     {
-        foreach (GameObject item in sync_obj)
+        if (Vector3.Distance(this.gameObject.transform.position,targetObject.transform.position) > 1f)
         {
-            // поворот модели
-            //item.transform.LookAt(new Vector3(targetObject.transform.position.x, item.transform.position.y, targetObject.transform.position.z));
-            StartCoroutine(RotateTowardsTarget(item));
+            foreach (GameObject item in sync_obj)
+            {
+                // поворот модели
+                //item.transform.LookAt(new Vector3(targetObject.transform.position.x, item.transform.position.y, targetObject.transform.position.z));
+                StartCoroutine(RotateTowardsTarget(item));
+            }
         }
     }
 

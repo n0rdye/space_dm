@@ -16,6 +16,7 @@ public class inventory : MonoBehaviour
     public Text health_text;
     public Text[] player_text;
     public Text materials_text;
+    public bool canswitch = true;
 
     // Start is called before the first frame update
     void Start()
@@ -50,27 +51,27 @@ public class inventory : MonoBehaviour
             save();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && canswitch)
         {
             set_weapon("pistol");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && canswitch)
         {
             set_weapon("smg");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && canswitch)
         {
             set_weapon("shotgun");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && canswitch)
         {
             set_weapon("rifle");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.Alpha5) && canswitch)
         {
             set_weapon("sniper");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        else if (Input.GetKeyDown(KeyCode.Alpha6) && canswitch)
         {
             set_weapon("lmg");
         }
@@ -98,6 +99,41 @@ public class inventory : MonoBehaviour
                 if (item.activeSelf)
                 {
                     item.GetComponent<shooting>().canshoot = true;
+                }
+            }
+        }
+    }
+
+    public void tab(bool stop)
+    {
+        var pl = this.gameObject.GetComponent<player_controler>();
+        if (stop)
+        {
+            Time.timeScale = 0.1f;
+            tab_menu.gameObject.SetActive(true);
+            foreach (var item in weapons)
+            {
+                if (item.activeSelf)
+                {
+                    Cursor.visible = true;
+                    item.GetComponent<shooting>().canshoot = false;
+                    canswitch = false;
+                    pl.sync = false;
+                }
+            }
+        }
+        else if (!stop)
+        {
+            Time.timeScale = 1.0f;
+            tab_menu.gameObject.SetActive(false);
+            foreach (var item in weapons)
+            {
+                if (item.activeSelf)
+                {
+                    Cursor.visible = false;
+                    item.GetComponent<shooting>().canshoot = true;
+                    canswitch = true;
+                    pl.sync = true;
                 }
             }
         }

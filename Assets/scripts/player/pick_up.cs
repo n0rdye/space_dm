@@ -22,7 +22,7 @@ public class pick_up : MonoBehaviour
 
         if (drop_stats.num <= 0)
         {
-            task = GameObject.FindGameObjectsWithTag("player")[0].GetComponent<task>();
+            task.set_message("");
             Destroy(this.gameObject);
         }
 
