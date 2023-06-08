@@ -73,19 +73,19 @@ public class save_load : MonoBehaviour
     //    //Debug.Log("weapon saved");
     //}
 
-    public void saveup(upgrade_vars input)
+    public void saveup(string name, upgrade_vars input)
     {
-        string savefile = Application.persistentDataPath + "/upgrade_vars.json";
+        string savefile = Application.persistentDataPath + "/weapon/"+name+ "_upgrades.json";
         string jsonString = JsonUtility.ToJson(input);
         File.WriteAllText(savefile, jsonString);
         //Debug.Log("weapon saved");
     }
 
-    public upgrade_vars loadup()
+    public upgrade_vars loadup(string name)
     {
         try
         {
-            string savefile = Application.persistentDataPath + "/upgrade_vars.json";
+            string savefile = Application.persistentDataPath + "/weapon/"+name+ "_upgrades.json";
             string varfile = File.ReadAllText(savefile);
             upgrade_vars outp = JsonUtility.FromJson<upgrade_vars>(varfile);
             //Debug.Log("weapon loaded");
@@ -93,7 +93,7 @@ public class save_load : MonoBehaviour
         }
         catch (FileNotFoundException)
         {
-            saveup(new upgrade_vars());
+            saveup(name,new upgrade_vars());
             //Debug.Log("weapon loaded");
             return new upgrade_vars();
         }

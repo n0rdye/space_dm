@@ -9,6 +9,7 @@ TagManager:
   - enemy
   - weapon
   - ammo
+  - upgrade_ui
   layers:
   - Default
   - TransparentFX

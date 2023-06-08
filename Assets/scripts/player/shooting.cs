@@ -11,7 +11,7 @@ public class shooting : MonoBehaviour
 
     public vars var;
     public weapon stats;
-    const float speed = 5000;
+    const float speed = 4000;
     public float nextfire;
     public bool reloading;
     public bool canshoot = true;
