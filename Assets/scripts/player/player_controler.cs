@@ -105,6 +105,7 @@ public class player_controler : MonoBehaviour
         {
             speed = var.speed;
         }
+        
     }
 
     void rotation_sync()

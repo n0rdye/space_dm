@@ -5,7 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     public int damage;
-    public float deltime = 2f;
+    public float deltime = 5f;
     public bool enemy = false;
 
 

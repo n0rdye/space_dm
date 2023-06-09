@@ -147,7 +147,7 @@ public class enemy : MonoBehaviour
     IEnumerator pointsearch(){
         walkPointSet = true;
         Debug.Log("walk");
-        yield return new WaitForSeconds(Random.Range(4, 10));
+        yield return new WaitForSeconds(Random.Range(6, 10));
         walkPointSet = false;
         Debug.Log("no walk");
     }
@@ -167,6 +167,7 @@ public class enemy : MonoBehaviour
         walking = false;
         agent.SetDestination(new Vector3(player.position.x, player.position.y, player.position.z));
         last_seen = player;
+        hit();
     }
 
 

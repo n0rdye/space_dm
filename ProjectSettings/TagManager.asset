@@ -10,6 +10,7 @@ TagManager:
   - weapon
   - ammo
   - upgrade_ui
+  - roof
   layers:
   - Default
   - TransparentFX

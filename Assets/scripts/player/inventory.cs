@@ -103,9 +103,10 @@ public class inventory : MonoBehaviour
                 }
             }
         }
+
     }
 
-    public void tab(bool stop)
+        public void tab(bool stop)
     {
         var pl = this.gameObject.GetComponent<player_controler>();
         if (stop)
