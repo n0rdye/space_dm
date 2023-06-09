@@ -11,7 +11,7 @@ public class shooting : MonoBehaviour
 
     public vars var;
     public weapon stats;
-    const float speed = 4000;
+    const float speed = 3000;
     public float nextfire;
     public bool reloading;
     public bool canshoot = true;
@@ -82,6 +82,8 @@ public class shooting : MonoBehaviour
             canshoot = false;
             return;
         }
+
+        
 
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextfire && canshoot)
         {

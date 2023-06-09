@@ -13,6 +13,7 @@ public class player_controler : MonoBehaviour
 
     public float next;
     public float speed;
+    public int aim = 2;
 
     private Vector3 moveDirection = Vector3.zero;
     public GameObject targetObject;
@@ -23,7 +24,7 @@ public class player_controler : MonoBehaviour
     public bool sync = true;
 
     void Start () {
-        Application.targetFrameRate = 55;
+        Application.targetFrameRate = 59;
         direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         var = new save_load().load();
         speed = var.speed;
@@ -56,7 +57,8 @@ public class player_controler : MonoBehaviour
 
         // именение положеня камеры
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, transform.position + cameraOffset, Time.deltaTime * 7.4f);
-        Camera.main.transform.LookAt(transform.position + new Vector3(-offsetVector.y * 2, 0, offsetVector.x * 2));
+        Camera.main.transform.LookAt(transform.position + new Vector3(-offsetVector.y * aim, 0, offsetVector.x * aim));
+
 
         if (Input.GetAxis("Mouse ScrollWheel") != 0 && Camera.main.orthographicSize <= 10 && Camera.main.orthographicSize >= 4)
         {
@@ -76,9 +78,23 @@ public class player_controler : MonoBehaviour
         if (sync) rotation_sync();
 
         // дещ
+        if (Time.time >= next)
+        {
+            var inv = this.gameObject.GetComponent<inventory>();
+            inv.dash_text.gameObject.SetActive(true);
+        }
         if (Input.GetKey(KeyCode.Space) && Time.time >= next)
         {
             dash();
+        }
+
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            aim = 10;
+        }
+        else
+        {
+            aim = 2;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -128,8 +144,12 @@ public class player_controler : MonoBehaviour
 
     void dash()
     {
-        next = Time.time + 1f / var.dash_time;
+        next = Time.time + 1f * var.dash_time;
         speed = var.speed * 4;
+
+        var inv = this.gameObject.GetComponent<inventory>();
+        inv.dash_text.gameObject.SetActive(false);
+
         Invoke("SpeedStandart", 0.2f);
     }
     void SpeedStandart(){

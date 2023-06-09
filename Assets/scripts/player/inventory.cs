@@ -14,6 +14,7 @@ public class inventory : MonoBehaviour
     public Canvas tab_menu;
 
     public Text health_text;
+    public Text dash_text;
     public Text[] player_text;
     public Text materials_text;
     public bool canswitch = true;
@@ -45,9 +46,9 @@ public class inventory : MonoBehaviour
         player_text[0].text = var.max_health.ToString();
         player_text[1].text = var.dash_time.ToString();
         materials_text.text = var.materials.ToString();
-        if (var.health > 100)
+        if (var.health > var.max_health)
         {
-            var.health = 100;
+            var.health = var.max_health;
             save();
         }
 

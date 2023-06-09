@@ -8,10 +8,12 @@ public class vars
 {
     //public string savefile = new save_load().get_path() + "/vars.json";
     //public string weapon_savefile = new save_load().get_path() + "/weapon";
-    public float dash_time = 0.4f;
+    public float dash_time = 4.0f;
     public float speed = 6f;
     public int health = 100;
     public int max_health = 100;
+
+    public int aim = 2;
 
     public string weapon = "none";
     public string[] weapons = { "pistol","smg","shotgun","rifle","sniper","lmg"};

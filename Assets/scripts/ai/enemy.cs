@@ -45,10 +45,12 @@ public class enemy : MonoBehaviour
     private void Update()
     {
         
-        if (stats.health <= 1)
+        if (stats.health <= 0)
         {
             StartCoroutine(die());
         }
+
+        this.gameObject.transform.Find("health").GetComponent<TextMesh>().text = stats.health.ToString();
 
 
         //Check for sight and attack range
@@ -139,6 +141,8 @@ public class enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
+        stats.drop.GetComponent<pick_up>().drop_stats = stats.dstats;
+        
         Instantiate(stats.drop, transform.position, transform.rotation);
     }
 

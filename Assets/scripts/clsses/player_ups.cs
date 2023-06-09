@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
-public class player_upgrades
+[System.Serializable]
+public class player_ups
 {
-    public float[] health = new float[] { 10, 3f, 1, 20 };
-    public float[] dash_time = new float[] { 10, 0.1f, 1, 20 };
+    public ups health;
+    public ups dash_time;
 }

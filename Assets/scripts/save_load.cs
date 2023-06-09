@@ -76,7 +76,7 @@ public class save_load : MonoBehaviour
     //    //Debug.Log("weapon saved");
     //}
 
-    public void saveup(string name, weapon_ups input)
+    public void saveup_w(string name, weapon_ups input)
     {
         string savefile = get_path() + "/weapon/"+name+ "_upgrades.json";
         string jsonString = JsonUtility.ToJson(input);
@@ -84,7 +84,7 @@ public class save_load : MonoBehaviour
         //Debug.Log("weapon saved");
     }
 
-    public void saveupn(string name, float[] reload_speed, float[] damage, float[] max_ammo)
+    public void saveupn_w(string name, ups reload_speed, ups damage, ups max_ammo)
     {
         string savefile = get_path() + "/weapon/" + name + "_upgrades.json";
         var upgrade = new weapon_ups();
@@ -96,7 +96,7 @@ public class save_load : MonoBehaviour
         //Debug.Log("weapon saved");
     }
 
-    public weapon_ups loadup(string name)
+    public weapon_ups loadup_w(string name)
     {
         try
         {
@@ -108,9 +108,47 @@ public class save_load : MonoBehaviour
         }
         catch (FileNotFoundException)
         {
-            uprestat();
+            //uprestat();
+            uprestat_w(name);
             //Debug.Log("weapon loaded");
             return new weapon_ups();
+        }
+    }
+
+    public void saveup_pl(player_ups input)
+    {
+        string savefile = get_path() + "/upgrade.json";
+        string jsonString = JsonUtility.ToJson(input);
+        File.WriteAllText(savefile, jsonString);
+        //Debug.Log("weapon saved");
+    }
+
+    public void saveupn_pl( ups dash_time, ups health)
+    {
+        string savefile = get_path() + "/upgrade.json";
+        var upgrade = new player_ups();
+        upgrade.health = health;
+        upgrade.dash_time = dash_time;
+        string jsonString = JsonUtility.ToJson(upgrade);
+        File.WriteAllText(savefile, jsonString);
+        //Debug.Log("weapon saved");
+    }
+
+    public player_ups loadup_pl()
+    {
+        try
+        {
+            string savefile = get_path() + "/upgrade.json";
+            string varfile = File.ReadAllText(savefile);
+            player_ups outp = JsonUtility.FromJson<player_ups>(varfile);
+            //Debug.Log("weapon loaded");
+            return outp;
+        }
+        catch (FileNotFoundException)
+        {
+            uprestat_pl();
+            //Debug.Log("weapon loaded");
+            return new player_ups();
         }
     }
 
@@ -177,19 +215,52 @@ public class save_load : MonoBehaviour
 
         savewn(0,0,0,0,0,0,true,"none");
         savewn(12,12,12,10,2,4,false,"pistol");
-        savewn(24,24,24,6,3,15,false,"smg");
+        savewn(24,24,24,4,3,15,false,"smg");
         savewn(6,6,6,40,4,1,false,"shotgun");
         savewn(30,30,30,12,4,8,false,"rifle");
         savewn(4,4,4,80,4,0.5f,false,"sniper");
         savewn(40,40,40,10,5,7,false,"lmg");
     }
 
-    public void uprestat()
+    public void uprestat_w(string name)
     {
         //reload_speed, damage, max_ammo
         //materials , upgrade , current lvl, max lvl, up cost
-        saveupn("none", new float[] { 0, 0, 0, 0, 0 }, new float[] { 0, 0, 0, 0, 0 }, new float[] { 0, 0, 0, 0, 0 });
-        saveupn("pistol", new float[] { 15, 0.1f, 1, 10, 0.2f }, new float[] { 20, 1, 1, 20, 0.2f }, new float[] { 10, 1, 1, 10, 0.1f });
+        //saveupn("none", new float[] { 0, 0, 0, 0, 0 }, new float[] { 0, 0, 0, 0, 0 }, new float[] { 0, 0, 0, 0, 0 });
+        //saveupn("pistol", new float[] { 15, 0.1f, 1, 10, 0.2f }, new float[] { 20, 1, 1, 20, 0.2f }, new float[] { 10, 1, 1, 10, 0.1f });
+        var w_pistol_rs = new ups();
+        w_pistol_rs.cost = 15;
+        w_pistol_rs.up = 0.1f;
+        w_pistol_rs.max_lvl = 10;
+        w_pistol_rs.up_cost = 5;
+        var w_pistol_dm = new ups();
+        w_pistol_dm.cost = 20;
+        w_pistol_dm.up = 3;
+        w_pistol_dm.max_lvl = 20;
+        w_pistol_dm.up_cost = 2;
+        var w_pistol_ma = new ups();
+        w_pistol_ma.cost = 15;
+        w_pistol_ma.up = 2;
+        w_pistol_ma.max_lvl = 20;
+        w_pistol_ma.up_cost = 5;
+
+        saveupn_w(name,w_pistol_rs,w_pistol_dm,w_pistol_ma);
+    }
+
+    public void uprestat_pl()
+    {
+        Debug.Log("pl stats restart");
+        var pl_dt = new ups();
+        pl_dt.cost = 25;
+        pl_dt.up = 0.4f;
+        pl_dt.max_lvl = 10;
+        pl_dt.up_cost = 3;
+        var pl_hp = new ups();
+        pl_hp.cost = 30;
+        pl_hp.up = 3;
+        pl_hp.max_lvl = 50;
+        pl_hp.up_cost = 6;
+        saveupn_pl(pl_dt, pl_hp);
     }
 
 }
