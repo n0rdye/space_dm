@@ -18,7 +18,7 @@ public class bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemy")
         {
-            var enemy_stats = collision.gameObject.GetComponent<enemy>(); ;
+            var enemy_stats = collision.gameObject.GetComponent<enemy>();
             enemy_stats.stats.health -= damage;
             enemy_stats.hit();
             Destroy(gameObject);

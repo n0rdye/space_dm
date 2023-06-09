@@ -11,6 +11,7 @@ public class enemy : MonoBehaviour
     public float ammo;
 
     public LayerMask whatIsGround, whatIsPlayer;
+    public enemy_manager manager;
 
     //Patroling
     Vector3 walkPoint;
@@ -32,6 +33,7 @@ public class enemy : MonoBehaviour
 
     private void Awake()
     {
+        manager = this.transform.parent.gameObject.GetComponent<enemy_manager>();
         last_seen = null;
         ammo = stats.max_ammo;
         canshoot = true;
@@ -56,6 +58,7 @@ public class enemy : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, stats.sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, stats.attackRange, whatIsPlayer);
+
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
@@ -88,10 +91,16 @@ public class enemy : MonoBehaviour
     //    if (distanceToWalkPoint.magnitude < 0.2f) walkPointSet = false; fargot = false;
     //}
 
+
+
     public void hit()
     {
-        agent.SetDestination(player.position);
+        manager.hit(this.gameObject);
+        //share.gameObject.SetActive(true);
         last_seen = player;
+        //share.gameObject.SetActive(false);
+        //playerInAttackRange = Physics.CheckSphere(transform.position, stats.sightRange, whatIsPlayer);
+
     }
     private void Patroling(){
         plspoted = false;
@@ -119,9 +128,13 @@ public class enemy : MonoBehaviour
         if (last_seen != null)
         {
             walkPoint = new Vector3(last_seen.position.x, transform.position.y, last_seen.position.z);
-            last_seen = null;
             if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            {
+                last_seen = null;
                 StartCoroutine(pointsearch());
+            }
+
+
         }
         else
         {
@@ -133,8 +146,10 @@ public class enemy : MonoBehaviour
     }
     IEnumerator pointsearch(){
         walkPointSet = true;
-        yield return new WaitForSeconds(4);
+        Debug.Log("walk");
+        yield return new WaitForSeconds(Random.Range(4, 10));
         walkPointSet = false;
+        Debug.Log("no walk");
     }
 
     IEnumerator die()
