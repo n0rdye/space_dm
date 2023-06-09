@@ -7,10 +7,20 @@ public class pick_up : MonoBehaviour
 {
     public drop_stats drop_stats;
     public task task;
+    public bool random;
 
     void Start()
     {
-       task = GameObject.FindGameObjectsWithTag("player")[0].GetComponent<task>();
+        task = GameObject.FindGameObjectsWithTag("player")[0].GetComponent<task>();
+        if (random)
+        {
+            //var weapons = new drop_stats.types[] { "pistol", "smg", "shotgun", "rifle", "sniper", "lmg", "all", "current", "next" };
+            var items = new drop_stats.types[] { drop_stats.types.ammo, drop_stats.types.materials, drop_stats.types.health };
+            drop_stats.num = Random.Range(1, 5);
+            drop_stats.type = items[Random.Range(0, 3)];
+            if (drop_stats.type == drop_stats.types.health || drop_stats.type == drop_stats.types.materials) drop_stats.num *= 10;
+
+        }
     }
 
     void OnTriggerExit(Collider other)
