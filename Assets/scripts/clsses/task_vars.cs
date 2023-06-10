@@ -8,4 +8,5 @@ using System.IO;
 public class task_vars
 {
     public string message = " ";
+    public task current_task;
 }

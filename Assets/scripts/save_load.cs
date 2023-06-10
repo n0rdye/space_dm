@@ -264,12 +264,12 @@ public class save_load : MonoBehaviour
         w_pistol_rs.cost = 15;
         w_pistol_rs.up = 0.1f;
         w_pistol_rs.max_lvl = 10;
-        w_pistol_rs.up_cost = 5;
+        w_pistol_rs.up_cost = 10;
         var w_pistol_dm = new ups();
         w_pistol_dm.cost = 20;
         w_pistol_dm.up = 3;
         w_pistol_dm.max_lvl = 20;
-        w_pistol_dm.up_cost = 2;
+        w_pistol_dm.up_cost = 6;
         var w_pistol_ma = new ups();
         w_pistol_ma.cost = 15;
         w_pistol_ma.up = 2;

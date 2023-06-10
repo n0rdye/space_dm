@@ -18,7 +18,7 @@ public class upgrade : MonoBehaviour
     public GameObject ui_canvas;
     public GameObject pl_canvas;
     private inventory inv;
-    public task task;
+    public task_manager task;
     public enemy_manager enemy_manager;
 
     void Start()
@@ -81,7 +81,7 @@ public class upgrade : MonoBehaviour
         if (other.gameObject.tag == "player")
         {
             inv = other.gameObject.GetComponent<inventory>();
-            task = inv.gameObject.GetComponent<task>();
+            task = inv.gameObject.GetComponent<task_manager>();
             task.set_message("hold tab to open upgrade menu");
         }
     }

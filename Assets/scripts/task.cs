@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class task : MonoBehaviour
+public class task_manager : MonoBehaviour
 {
     public Text message_text;
     public task_vars tasks;

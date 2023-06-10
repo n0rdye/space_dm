@@ -6,11 +6,11 @@ using UnityEngine;
 public class pick_up : MonoBehaviour
 {
     public drop_stats drop_stats;
-    public task task;
+    public task_manager task;
 
     void Start()
     {
-        task = GameObject.FindGameObjectsWithTag("player")[0].GetComponent<task>();
+        task = GameObject.FindGameObjectsWithTag("player")[0].GetComponent<task_manager>();
         if (drop_stats.random)
         {
             drop_stats.weapon = drop_stats.weapons.current;
