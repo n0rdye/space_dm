@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class save_load : MonoBehaviour
 {
@@ -210,9 +209,42 @@ public class save_load : MonoBehaviour
         }
     }
 
+    public void savemap(map_lvl input)
+    {
+        string savefile = get_path() +"/maps/"+ SceneManager.GetActiveScene().name + ".json";
+        string jsonString = JsonUtility.ToJson(input);
+        File.WriteAllText(savefile, jsonString);
+        //Debug.Log("weapon saved");
+    }
+
+    public map_lvl loadmap(string name)
+    {
+        try
+        {
+            string savefile = get_path() + "/maps/" + name + ".json";
+            string varfile = File.ReadAllText(savefile);
+            map_lvl outp = JsonUtility.FromJson<map_lvl>(varfile);
+            //Debug.Log("weapon loaded");
+            return outp;
+        }
+        catch (FileNotFoundException)
+        {
+            savemap(new map_lvl());
+            //Debug.Log("weapon loaded");
+            return new map_lvl();
+        }
+        catch (DirectoryNotFoundException)
+        {
+            var dir = get_path() + "/maps/";
+            var folder = Directory.CreateDirectory(dir);
+            string savefile = get_path() + "/maps/" + name + ".json";
+            savemap(new map_lvl());
+            return new map_lvl();
+        }
+    }
+
     public void wrestat()
     {
-
         savewn(0,0,0,0,0,0,true,"none");
         savewn(12,12,12,10,2,4,false,"pistol");
         savewn(24,24,24,4,3,15,false,"smg");

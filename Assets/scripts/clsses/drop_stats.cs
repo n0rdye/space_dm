@@ -11,4 +11,5 @@ public class drop_stats
     public types type;
     public enum weapons { none, pistol, smg, shotgun, rifle, sniper, lmg, all, current, next};
     public weapons weapon;
+    public bool random;
 }

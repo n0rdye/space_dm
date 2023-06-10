@@ -7,18 +7,18 @@ public class pick_up : MonoBehaviour
 {
     public drop_stats drop_stats;
     public task task;
-    public bool random;
 
     void Start()
     {
         task = GameObject.FindGameObjectsWithTag("player")[0].GetComponent<task>();
-        if (random)
+        if (drop_stats.random)
         {
+            drop_stats.weapon = drop_stats.weapons.current;
             //var weapons = new drop_stats.types[] { "pistol", "smg", "shotgun", "rifle", "sniper", "lmg", "all", "current", "next" };
             var items = new drop_stats.types[] { drop_stats.types.ammo, drop_stats.types.materials, drop_stats.types.health };
-            drop_stats.num = Random.Range(1, 5);
+            drop_stats.num = Random.Range(1, 10);
             drop_stats.type = items[Random.Range(0, 3)];
-            if (drop_stats.type == drop_stats.types.health || drop_stats.type == drop_stats.types.materials) drop_stats.num *= 10;
+            if (drop_stats.type == drop_stats.types.health || drop_stats.type == drop_stats.types.materials) drop_stats.num *= 5;
 
         }
     }
@@ -103,7 +103,7 @@ public class pick_up : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     inventory inv = other.gameObject.GetComponent<inventory>();
-                    inv.var.materials += drop_stats.num;
+                    inv.var.materials += drop_stats.num * drop_stats.num;
                     inv.save();
                     inv.load();
                     Debug.Log("mats added");
@@ -118,7 +118,7 @@ public class pick_up : MonoBehaviour
                 inventory inv = other.gameObject.GetComponent<inventory>();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    inv.var.health += drop_stats.num;
+                    inv.var.health += drop_stats.num * drop_stats.num;
                     inv.save();
                     inv.load();
                     drop_stats.num = 0;

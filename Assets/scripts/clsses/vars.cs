@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.IO;
 
 [System.Serializable]
@@ -17,6 +18,10 @@ public class vars
 
     public string weapon = "none";
     public string[] weapons = { "pistol","smg","shotgun","rifle","sniper","lmg"};
+
+    //public List<string> maps;
+    public Scene current_map;
+    public float player_lvl = 0;
 
     public int materials = 0;
 

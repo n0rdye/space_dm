@@ -42,7 +42,7 @@ public class hide_roof : MonoBehaviour
                     //hit_obj = hit.collider.gameObject;
                     //var MeshRenderer tmp = hit_obj.transform.GetComponent<MeshRenderer>();
                     //tmp.material.color = Color.black;
-                    Debug.Log("Did Hit");
+                    //Debug.Log("Did Hit");
                 }
 
             }
@@ -51,7 +51,7 @@ public class hide_roof : MonoBehaviour
                 //hit_obj.GetComponent<Renderer>().enabled = true;
                 tmp_color.a = 1f;
                 hit_obj.GetComponent<Renderer>().material.color = tmp_color;
-                Debug.Log("Did Hit");
+               // Debug.Log("Did Hit");
             }
         }
         catch

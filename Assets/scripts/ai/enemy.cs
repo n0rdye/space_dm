@@ -11,7 +11,7 @@ public class enemy : MonoBehaviour
     public float ammo;
 
     public LayerMask whatIsGround, whatIsPlayer;
-    public enemy_manager manager;
+    private enemy_manager manager;
 
     //Patroling
     Vector3 walkPoint;
@@ -41,7 +41,6 @@ public class enemy : MonoBehaviour
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         //agent.stoppingDistance = stats.attackRange / 2;
-        agent.speed = stats.speed;
     }
 
     private void Update()
@@ -51,6 +50,9 @@ public class enemy : MonoBehaviour
         {
             StartCoroutine(die());
         }
+
+        agent.speed = stats.speed;
+
 
         this.gameObject.transform.Find("health").GetComponent<TextMesh>().text = stats.health.ToString();
 
@@ -146,10 +148,10 @@ public class enemy : MonoBehaviour
     }
     IEnumerator pointsearch(){
         walkPointSet = true;
-        Debug.Log("walk");
+        //Debug.Log("walk");
         yield return new WaitForSeconds(Random.Range(6, 10));
         walkPointSet = false;
-        Debug.Log("no walk");
+        //Debug.Log("no walk");
     }
 
     IEnumerator die()

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class inventory : MonoBehaviour
 {
     public vars var;
+    public map_lvl lvl_var;
     //public shooting shot;
     //public weapon weapon;
     public GameObject[] weapons;
@@ -15,6 +17,7 @@ public class inventory : MonoBehaviour
 
     public Text health_text;
     public Text dash_text;
+    public Text lvl_text;
     public Text[] player_text;
     public Text materials_text;
     public bool canswitch = true;
@@ -25,18 +28,26 @@ public class inventory : MonoBehaviour
         load();
         set_weapon(var.weapon);
         Cursor.visible = false;
+        if (lvl_var.player_position != new Vector3(0, 0, 0))
+        {
+            transform.position = lvl_var.player_position;
+        }
+        var.current_map = SceneManager.GetActiveScene();
     }
 
     public void load()
     {
         var = new save_load().load();
+        lvl_var = new save_load().loadmap(SceneManager.GetActiveScene().name);
         //shot = GetComponent<shooting>();
         //weapon = new save_load().loadw(current);
     }
 
     public void save()
     {
+        lvl_var.player_position = transform.position;
         new save_load().save(var);
+        new save_load().savemap(lvl_var);
     }
 
     // Update is called once per frame
@@ -46,6 +57,7 @@ public class inventory : MonoBehaviour
         player_text[0].text = var.max_health.ToString();
         player_text[1].text = var.dash_time.ToString();
         materials_text.text = var.materials.ToString();
+        lvl_text.text = Mathf.Round(lvl_var.enemy_lvl).ToString();
         if (var.health > var.max_health)
         {
             var.health = var.max_health;

@@ -19,6 +19,7 @@ public class upgrade : MonoBehaviour
     public GameObject pl_canvas;
     private inventory inv;
     public task task;
+    public enemy_manager enemy_manager;
 
     void Start()
     {
@@ -58,6 +59,9 @@ public class upgrade : MonoBehaviour
 
         player_stats_button[0].onClick.AddListener(() => dt_upgrade());
         player_stats_button[1].onClick.AddListener(() => health_upgrade());
+
+        enemy_manager = GameObject.Find("enemies").gameObject.GetComponent<enemy_manager>();
+
     }
 
     void OnTriggerExit(Collider other)
@@ -78,7 +82,7 @@ public class upgrade : MonoBehaviour
         {
             inv = other.gameObject.GetComponent<inventory>();
             task = inv.gameObject.GetComponent<task>();
-            task.set_message("press e to open upgrade menu");
+            task.set_message("hold tab to open upgrade menu");
         }
     }
 
@@ -107,46 +111,50 @@ public class upgrade : MonoBehaviour
                 }
 
 
-                weapon_stats_text[0].text = up_vars.max_ammo.cost + " materials \n + " + up_vars.max_ammo.up;
-                weapon_stats_text[1].text = up_vars.damage.cost + " materials \n + " + up_vars.damage.up;
-                weapon_stats_text[2].text = up_vars.reload_speed.cost + " materials \n " + up_vars.reload_speed.up;
-
-                player_stats_text[0].text = pl_ups.dash_time.cost + " materials \n - " + pl_ups.dash_time.up;
-                player_stats_text[1].text = pl_ups.health.cost + " materials \n + " + pl_ups.health.up;
-
-
-                weapon_lvl_text[0].text = up_vars.max_ammo.lvl + " lvl";
-                weapon_lvl_text[1].text = up_vars.damage.lvl + " lvl";
-                weapon_lvl_text[2].text = up_vars.reload_speed.lvl + " lvl";
-
-                player_lvl_text[0].text = pl_ups.dash_time.lvl + " lvl";
-                player_lvl_text[1].text = pl_ups.health.lvl + " lvl";
-
-                //if (new save_load().loadw(inv.var.weapon).reload_speed <= 0.1f)
-                //{
-                //    weapon_stats_button[2].gameObject.SetActive(false);
-                //}
-                if (up_vars.max_ammo.lvl >= up_vars.max_ammo.max_lvl)
+                try
                 {
-                    weapon_stats_button[0].gameObject.SetActive(false);
-                }
-                if (up_vars.damage.lvl >= up_vars.damage.max_lvl)
-                {
-                    weapon_stats_button[1].gameObject.SetActive(false);
-                }
-                if (up_vars.reload_speed.lvl >= up_vars.reload_speed.max_lvl)
-                {
-                    weapon_stats_button[2].gameObject.SetActive(false);
-                }
+                    weapon_stats_text[0].text = up_vars.max_ammo.cost + " materials \n + " + up_vars.max_ammo.up;
+                    weapon_stats_text[1].text = up_vars.damage.cost + " materials \n + " + up_vars.damage.up;
+                    weapon_stats_text[2].text = up_vars.reload_speed.cost + " materials \n " + up_vars.reload_speed.up;
 
-                if (pl_ups.dash_time.lvl >= pl_ups.dash_time.max_lvl)
-                {
-                    player_stats_button[0].gameObject.SetActive(false);
+                    player_stats_text[0].text = pl_ups.dash_time.cost + " materials \n - " + pl_ups.dash_time.up;
+                    player_stats_text[1].text = pl_ups.health.cost + " materials \n + " + pl_ups.health.up;
+
+
+                    weapon_lvl_text[0].text = up_vars.max_ammo.lvl + " lvl";
+                    weapon_lvl_text[1].text = up_vars.damage.lvl + " lvl";
+                    weapon_lvl_text[2].text = up_vars.reload_speed.lvl + " lvl";
+
+                    player_lvl_text[0].text = pl_ups.dash_time.lvl + " lvl";
+                    player_lvl_text[1].text = pl_ups.health.lvl + " lvl";
+
+                    //if (new save_load().loadw(inv.var.weapon).reload_speed <= 0.1f)
+                    //{
+                    //    weapon_stats_button[2].gameObject.SetActive(false);
+                    //}
+                    if (up_vars.max_ammo.lvl >= up_vars.max_ammo.max_lvl)
+                    {
+                        weapon_stats_button[0].gameObject.SetActive(false);
+                    }
+                    if (up_vars.damage.lvl >= up_vars.damage.max_lvl)
+                    {
+                        weapon_stats_button[1].gameObject.SetActive(false);
+                    }
+                    if (up_vars.reload_speed.lvl >= up_vars.reload_speed.max_lvl)
+                    {
+                        weapon_stats_button[2].gameObject.SetActive(false);
+                    }
+
+                    if (pl_ups.dash_time.lvl >= pl_ups.dash_time.max_lvl)
+                    {
+                        player_stats_button[0].gameObject.SetActive(false);
+                    }
+                    if (pl_ups.health.lvl >= pl_ups.health.max_lvl)
+                    {
+                        player_stats_button[1].gameObject.SetActive(false);
+                    }
                 }
-                if (pl_ups.health.lvl >= pl_ups.health.max_lvl)
-                {
-                    player_stats_button[1].gameObject.SetActive(false);
-                }
+                catch { }
             }
         }
     }
@@ -160,11 +168,15 @@ public class upgrade : MonoBehaviour
         up_vars.max_ammo.lvl++;
         up_vars.max_ammo.cost += up_vars.max_ammo.up_cost;
 
+        inv.lvl_var.enemy_lvl += 0.2f;
+        inv.var.player_lvl += 0.2f / 2;
+
         inv.save();
         new save_load().savew(inv.var.weapon, weapon);
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
+        enemy_manager.set_stats();
     }
     void damage_upgrade()
     {
@@ -175,11 +187,15 @@ public class upgrade : MonoBehaviour
         up_vars.damage.lvl++;
         up_vars.damage.cost += up_vars.damage.up_cost;
 
+        inv.lvl_var.enemy_lvl += 0.2f;
+        inv.var.player_lvl += 0.2f / 2;
+
         inv.save();
         new save_load().savew(inv.var.weapon, weapon);
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
+        enemy_manager.set_stats();
     }
     void rspeed_upgrade()
     {
@@ -193,12 +209,15 @@ public class upgrade : MonoBehaviour
         weapon.reload_speed = (float)System.Math.Round(weapon.reload_speed, 2);
         //up_vars.reload_speed.up = (float)System.Math.Round(up_vars.reload_speed.up, 2);
 
+        inv.lvl_var.enemy_lvl += 0.2f;
+        inv.var.player_lvl += 0.2f / 2;
 
         inv.save();
         new save_load().savew(inv.var.weapon, weapon);
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
+        enemy_manager.set_stats();
     }
 
     //player
@@ -211,9 +230,13 @@ public class upgrade : MonoBehaviour
 
         inv.var.dash_time = (float)System.Math.Round(inv.var.dash_time, 2);
 
+        inv.lvl_var.enemy_lvl += 0.2f;
+        inv.var.player_lvl += 0.2f / 2;
+
         inv.save();
         new save_load().saveup_pl(pl_ups);
         inv.load();
+        enemy_manager.set_stats();
     }
 
     void health_upgrade()
@@ -222,10 +245,14 @@ public class upgrade : MonoBehaviour
         inv.var.max_health += (int)pl_ups.health.up;
         pl_ups.health.lvl++;
         pl_ups.health.cost += pl_ups.health.up_cost;
-        
+
+        inv.lvl_var.enemy_lvl += 0.2f;
+        inv.var.player_lvl += 0.2f / 2;
+
         inv.save();
         new save_load().saveup_pl(pl_ups);
         inv.load();
+        enemy_manager.set_stats();
     }
 
 }
