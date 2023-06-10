@@ -169,8 +169,8 @@ public class upgrade : MonoBehaviour
         up_vars.max_ammo.cost += up_vars.max_ammo.up_cost;
 
         inv.lvl_var.enemy_lvl += 0.2f;
-        inv.lvl_var.max_enemies += 0.05f;
         inv.var.player_lvl += 0.2f;
+        inv.lvl_var.max_enemies += 0.03f;
 
         inv.save();
         new save_load().savew(inv.var.weapon, weapon);
@@ -190,7 +190,7 @@ public class upgrade : MonoBehaviour
 
         inv.lvl_var.enemy_lvl += 0.2f;
         inv.var.player_lvl += 0.2f;
-        inv.lvl_var.max_enemies += 0.05f;
+        inv.lvl_var.max_enemies += 0.03f;
 
         inv.save();
         new save_load().savew(inv.var.weapon, weapon);
@@ -213,7 +213,7 @@ public class upgrade : MonoBehaviour
 
         inv.lvl_var.enemy_lvl += 0.2f;
         inv.var.player_lvl += 0.2f;
-        inv.lvl_var.max_enemies += 0.05f;
+        inv.lvl_var.max_enemies += 0.03f;
 
         inv.save();
         new save_load().savew(inv.var.weapon, weapon);
@@ -235,7 +235,7 @@ public class upgrade : MonoBehaviour
 
         inv.lvl_var.enemy_lvl += 0.2f;
         inv.var.player_lvl += 0.2f;
-        inv.lvl_var.max_enemies += 0.05f;
+        inv.lvl_var.max_enemies += 0.03f;
 
         inv.save();
         new save_load().saveup_pl(pl_ups);
@@ -252,7 +252,7 @@ public class upgrade : MonoBehaviour
 
         inv.lvl_var.enemy_lvl += 0.2f;
         inv.var.player_lvl += 0.2f;
-        inv.lvl_var.max_enemies += 0.05f;
+        inv.lvl_var.max_enemies += 0.03f;
 
         inv.save();
         new save_load().saveup_pl(pl_ups);

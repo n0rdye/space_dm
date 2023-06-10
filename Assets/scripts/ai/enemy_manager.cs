@@ -21,7 +21,7 @@ public class enemy_manager : MonoBehaviour
         lvl_var = new save_load().loadmap(SceneManager.GetActiveScene().name);
         enemies = GameObject.FindGameObjectsWithTag("enemy");
 
-        if (lvl_var.max_enemies == 0) lvl_var.max_enemies = map_enemies;
+        if (lvl_var.max_enemies == -1) lvl_var.max_enemies = map_enemies;
 
         if (lvl_var.past == false)
         {
@@ -117,9 +117,9 @@ public class enemy_manager : MonoBehaviour
     {
         enemies = GameObject.FindGameObjectsWithTag("enemy");
 
-        Vector3[] transArray = new Vector3[enemies.Length-1];
+        Vector3[] transArray = new Vector3[enemies.Length];
 
-        for (int i = 0; i < enemies.Length - 1; i++)
+        for (int i = 0; i < enemies.Length; i++)
         {
             transArray[i] = enemies[i].transform.position;
         }

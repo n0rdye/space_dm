@@ -1530,7 +1530,7 @@ MonoBehaviour:
   - complited: 0
     map:
       m_Handle: 0
-    kills: 2
+    kills: 1
     item: red key
     trigger: {fileID: 1221740535}
     type: 1
@@ -1558,7 +1558,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &279255456
 GameObject:
@@ -4117,6 +4117,7 @@ MonoBehaviour:
   - {fileID: 199259194}
   enemies: []
   nenemy_pref: {fileID: 5397034750481898055, guid: cb154c13f9a8e984fa917e7d4127d2ba, type: 3}
+  map_enemies: 2
 --- !u!1 &841339056
 GameObject:
   m_ObjectHideFlags: 0
@@ -6065,7 +6066,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1227590114
 GameObject:
@@ -8994,7 +8995,7 @@ Transform:
   m_GameObject: {fileID: 1959098028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -8.500962, y: -18.26558, z: 7.317105}
-  m_LocalScale: {x: 7.0281, y: 7.0281, z: 7.0281}
+  m_LocalScale: {x: 56.972588, y: 56.972588, z: 56.972588}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 548387424}
