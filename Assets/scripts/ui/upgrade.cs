@@ -60,7 +60,7 @@ public class upgrade : MonoBehaviour
         player_stats_button[0].onClick.AddListener(() => dt_upgrade());
         player_stats_button[1].onClick.AddListener(() => health_upgrade());
 
-        enemy_manager = GameObject.Find("enemies").gameObject.GetComponent<enemy_manager>();
+        try { enemy_manager = GameObject.Find("enemies").gameObject.GetComponent<enemy_manager>(); } catch { }
 
     }
 
@@ -176,7 +176,7 @@ public class upgrade : MonoBehaviour
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
-        enemy_manager.set_stats();
+        try { enemy_manager.set_stats(); } catch { }
     }
     void damage_upgrade()
     {
@@ -195,7 +195,7 @@ public class upgrade : MonoBehaviour
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
-        enemy_manager.set_stats();
+        try { enemy_manager.set_stats(); } catch { }
     }
     void rspeed_upgrade()
     {
@@ -217,7 +217,7 @@ public class upgrade : MonoBehaviour
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
-        enemy_manager.set_stats();
+        try { enemy_manager.set_stats(); } catch { }
     }
 
     //player
@@ -236,7 +236,7 @@ public class upgrade : MonoBehaviour
         inv.save();
         new save_load().saveup_pl(pl_ups);
         inv.load();
-        enemy_manager.set_stats();
+        try { enemy_manager.set_stats(); } catch { }
     }
 
     void health_upgrade()
@@ -252,7 +252,7 @@ public class upgrade : MonoBehaviour
         inv.save();
         new save_load().saveup_pl(pl_ups);
         inv.load();
-        enemy_manager.set_stats();
+        try { enemy_manager.set_stats(); } catch { }
     }
 
 }

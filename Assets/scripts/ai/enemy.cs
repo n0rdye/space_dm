@@ -11,7 +11,7 @@ public class enemy : MonoBehaviour
     public float ammo;
 
     public LayerMask whatIsGround, whatIsPlayer;
-    private enemy_manager manager;
+    public enemy_manager manager = null;
 
     //Patroling
     Vector3 walkPoint;
@@ -33,7 +33,6 @@ public class enemy : MonoBehaviour
 
     private void Awake()
     {
-        manager = this.transform.parent.gameObject.GetComponent<enemy_manager>();
         last_seen = null;
         ammo = stats.max_ammo;
         canshoot = true;
@@ -45,7 +44,10 @@ public class enemy : MonoBehaviour
 
     private void Update()
     {
-        
+        if(manager == null)
+        {
+            manager = this.transform.parent.gameObject.GetComponent<enemy_manager>();
+        }
         if (stats.health <= 0)
         {
             StartCoroutine(die());
@@ -54,8 +56,11 @@ public class enemy : MonoBehaviour
         agent.speed = stats.speed;
 
 
-        this.gameObject.transform.Find("health").GetComponent<TextMesh>().text = stats.health.ToString();
-
+        try
+        {
+            this.gameObject.transform.Find("health").GetComponent<TextMesh>().text = stats.health.ToString();
+        }
+        catch { }
 
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, stats.sightRange, whatIsPlayer);
@@ -159,7 +164,8 @@ public class enemy : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
         stats.drop.GetComponent<pick_up>().drop_stats = stats.dstats;
-        
+        manager.lvl_var.enemies--;
+        new save_load().savemap(manager.lvl_var);
         Instantiate(stats.drop, transform.position, transform.rotation);
     }
 
