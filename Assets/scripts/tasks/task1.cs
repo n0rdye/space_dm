@@ -37,8 +37,8 @@ public class task1 : MonoBehaviour
                 }
                 else if (task.type == task.types.kill && System.Array.IndexOf(tasks, task) == curr_task)
                 {
-                    curr_kulls = (curr_kulls == 0)? (int)enemy_manager.lvl_var.enemies : curr_kulls;
-                    if ((curr_kulls - (int)enemy_manager.lvl_var.enemies) == task.kills)
+                    curr_kulls = (curr_kulls == 0)? enemy_manager.lvl_var.enemies_pos.Length : curr_kulls;
+                    if ((curr_kulls - enemy_manager.lvl_var.enemies_pos.Length) == task.kills)
                     {
                         curr_task++;
                         task.complited = true;
@@ -57,7 +57,7 @@ public class task1 : MonoBehaviour
             }
         }
 
-        if (curr_task >= (tasks.Length - 1))
+        if (curr_task > (tasks.Length -1))
         {
             complited = true;
         }

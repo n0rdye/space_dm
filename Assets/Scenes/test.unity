@@ -1530,6 +1530,15 @@ MonoBehaviour:
   - complited: 0
     map:
       m_Handle: 0
+    kills: 2
+    item: red key
+    trigger: {fileID: 1221740535}
+    type: 1
+    name: kill 1
+    description: 
+  - complited: 0
+    map:
+      m_Handle: 0
     kills: 1
     item: red key
     trigger: {fileID: 1221740535}
@@ -10255,7 +10264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608352107875664743, guid: 0e8b22fded11c32498916ab1abf17ee9, type: 3}
       propertyPath: drop_stats.type
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7608352107875664743, guid: 0e8b22fded11c32498916ab1abf17ee9, type: 3}
       propertyPath: drop_stats.random
@@ -10263,7 +10272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608352107875664743, guid: 0e8b22fded11c32498916ab1abf17ee9, type: 3}
       propertyPath: drop_stats.weapon
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8146420769764467423, guid: 0e8b22fded11c32498916ab1abf17ee9, type: 3}
       propertyPath: m_Name

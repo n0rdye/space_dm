@@ -35,13 +35,20 @@ public class enemy_manager : MonoBehaviour
         }
 
 
-
-        if (lvl_var.enemies_pos.Length != 0)
+        if (lvl_var.enemies_pos.Length > 0)
         {
-            for (int i = 0; i <= lvl_var.enemies - 1; i++)
+            for (int i = 0; i <= lvl_var.enemies_pos.Length - 1; i++)
             {
-                var tmp_enemy = Instantiate(nenemy_pref, lvl_var.enemies_pos[i], Quaternion.identity);
-                tmp_enemy.transform.parent = transform;
+                try
+                {
+                    var tmp_enemy = Instantiate(nenemy_pref, lvl_var.enemies_pos[i], Quaternion.identity);
+                    tmp_enemy.transform.parent = transform;
+                }
+                catch
+                {
+                    var tmp_enemy = Instantiate(nenemy_pref, spawns[(int)Random.Range(0, enemies.Length - 1)].position, Quaternion.identity);
+                    tmp_enemy.transform.parent = transform;
+                }
             }
         }
         else
@@ -52,6 +59,7 @@ public class enemy_manager : MonoBehaviour
                 tmp_enemy.transform.parent = transform;
             }
         }
+        save();
     }
 
     // Update is called once per frame
@@ -83,20 +91,26 @@ public class enemy_manager : MonoBehaviour
                 stats.reload_time -= (lvl_var.enemy_lvl / 80);
                 stats.speed += (lvl_var.enemy_lvl / 50);
             }
-
-            Vector3[] transArray = new Vector3[enemies.Length];
-
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                transArray[i] = enemies[i].transform.position;
-            }
-            lvl_var.enemies_pos = transArray;
-            new save_load().savemap(lvl_var);
         }
         catch
         {
             
         }
+    }
+
+    public void save()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("enemy");
+
+        Vector3[] transArray = new Vector3[enemies.Length-1];
+
+        for (int i = 0; i < enemies.Length - 1; i++)
+        {
+            transArray[i] = enemies[i].transform.position;
+        }
+        lvl_var.enemies_pos = transArray;
+        //Debug.Log(enemies.Length-1);
+        new save_load().savemap(lvl_var);
     }
 
     public void hit(GameObject main)

@@ -23,7 +23,7 @@ public class trigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "player" && !triggered)
+        if (other.gameObject.tag == "player")
         {
             //triggered = false;
             task.set_message("");

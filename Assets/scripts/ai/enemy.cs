@@ -164,9 +164,23 @@ public class enemy : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
         stats.drop.GetComponent<pick_up>().drop_stats = stats.dstats;
-        manager.lvl_var.enemies--;
+        //var tmp = manager.lvl_var.enemies_pos;
+        //RemoveAt(ref tmp, tmp.Length -1);
+        //manager.lvl_var.enemies_pos = tmp; 
         new save_load().savemap(manager.lvl_var);
         Instantiate(stats.drop, transform.position, transform.rotation);
+        manager.save();
+    }
+
+    public static void RemoveAt<T>(ref T[] arr, int index)
+    {
+        for (int a = index; a < arr.Length - 1; a++)
+        {
+            // moving elements downwards, to fill the gap at [index]
+            arr[a] = arr[a + 1];
+        }
+        // finally, let's decrement Array's size by one
+        System.Array.Resize(ref arr, arr.Length - 1);
     }
 
     private void ChasePlayer()
