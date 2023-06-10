@@ -150,6 +150,7 @@ public class shooting : MonoBehaviour
         {
             var bstats = bullet.GetComponent<bullet>();
             bstats.damage = stats.damage;
+            bstats.enemy = false;
             Transform bulletshoot = (Transform)Instantiate(bullet, spawns.position, spawns.rotation);
             bulletshoot.GetComponent<Rigidbody>().AddForce(spawns.forward * speed);
             stats.cur_ammo--;

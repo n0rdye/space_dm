@@ -18,7 +18,11 @@ public class trigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (triggered)
+        {
+            Destroy(gameObject);
+            task.set_message("");
+        }
     }
 
     void OnTriggerExit(Collider other)

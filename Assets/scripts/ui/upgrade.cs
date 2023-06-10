@@ -170,7 +170,7 @@ public class upgrade : MonoBehaviour
 
         inv.lvl_var.enemy_lvl += 0.2f;
         inv.lvl_var.max_enemies += 0.05f;
-        inv.var.player_lvl += 0.2f / 2;
+        inv.var.player_lvl += 0.2f;
 
         inv.save();
         new save_load().savew(inv.var.weapon, weapon);
@@ -189,7 +189,7 @@ public class upgrade : MonoBehaviour
         up_vars.damage.cost += up_vars.damage.up_cost;
 
         inv.lvl_var.enemy_lvl += 0.2f;
-        inv.var.player_lvl += 0.2f / 2;
+        inv.var.player_lvl += 0.2f;
         inv.lvl_var.max_enemies += 0.05f;
 
         inv.save();
@@ -212,7 +212,7 @@ public class upgrade : MonoBehaviour
         //up_vars.reload_speed.up = (float)System.Math.Round(up_vars.reload_speed.up, 2);
 
         inv.lvl_var.enemy_lvl += 0.2f;
-        inv.var.player_lvl += 0.2f / 2;
+        inv.var.player_lvl += 0.2f;
         inv.lvl_var.max_enemies += 0.05f;
 
         inv.save();
@@ -234,7 +234,7 @@ public class upgrade : MonoBehaviour
         inv.var.dash_time = (float)System.Math.Round(inv.var.dash_time, 2);
 
         inv.lvl_var.enemy_lvl += 0.2f;
-        inv.var.player_lvl += 0.2f / 2;
+        inv.var.player_lvl += 0.2f;
         inv.lvl_var.max_enemies += 0.05f;
 
         inv.save();
@@ -251,7 +251,7 @@ public class upgrade : MonoBehaviour
         pl_ups.health.cost += pl_ups.health.up_cost;
 
         inv.lvl_var.enemy_lvl += 0.2f;
-        inv.var.player_lvl += 0.2f / 2;
+        inv.var.player_lvl += 0.2f;
         inv.lvl_var.max_enemies += 0.05f;
 
         inv.save();

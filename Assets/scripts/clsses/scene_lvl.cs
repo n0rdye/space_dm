@@ -7,7 +7,7 @@ using System.IO;
 public class map_lvl
 {
     public float enemy_lvl = 0;
-    public float max_enemies = 2;
+    public float max_enemies = 0;
     public Vector3[] enemies_pos;
     public Vector3 player_position;
     public bool past = false;

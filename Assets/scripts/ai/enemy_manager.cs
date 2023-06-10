@@ -10,6 +10,7 @@ public class enemy_manager : MonoBehaviour
     public Transform[] spawns;
     public GameObject[] enemies;
     public GameObject nenemy_pref;
+    public float map_enemies;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,12 @@ public class enemy_manager : MonoBehaviour
 
         lvl_var = new save_load().loadmap(SceneManager.GetActiveScene().name);
         enemies = GameObject.FindGameObjectsWithTag("enemy");
+
+        if (lvl_var.max_enemies == 0) lvl_var.max_enemies = map_enemies;
+
         if (lvl_var.past == false)
         {
-            lvl_var.enemy_lvl += player.GetComponent<inventory>().var.player_lvl;
+            lvl_var.enemy_lvl += new save_load().load().player_lvl;
             lvl_var.past = true;
             new save_load().savemap(lvl_var);
         }
@@ -33,38 +37,49 @@ public class enemy_manager : MonoBehaviour
             stats.reload_time -= (lvl_var.enemy_lvl / 40);
             stats.speed += (lvl_var.enemy_lvl / 20);
         }
-
-
-        if (lvl_var.enemies_pos.Length > 0)
-        {
-            for (int i = 0; i <= lvl_var.enemies_pos.Length - 1; i++)
-            {
-                try
-                {
-                    var tmp_enemy = Instantiate(nenemy_pref, lvl_var.enemies_pos[i], Quaternion.identity);
-                    tmp_enemy.transform.parent = transform;
-                }
-                catch
-                {
-                    var tmp_enemy = Instantiate(nenemy_pref, spawns[(int)Random.Range(0, enemies.Length - 1)].position, Quaternion.identity);
-                    tmp_enemy.transform.parent = transform;
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i <= lvl_var.max_enemies - 1; i++)
-            {
-                var tmp_enemy = Instantiate(nenemy_pref, spawns[(int)Random.Range(0, enemies.Length - 1)].position, Quaternion.identity);
-                tmp_enemy.transform.parent = transform;
-            }
-        }
+        spawn();
         save();
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void spawn()
+    {
+        try
+        {
+            if (lvl_var.enemies_pos.Length > 0)
+            {
+                for (int i = 0; i <= lvl_var.enemies_pos.Length - 1; i++)
+                {
+                    try
+                    {
+                        var tmp_enemy = Instantiate(nenemy_pref, lvl_var.enemies_pos[i], Quaternion.identity);
+                        tmp_enemy.transform.parent = transform;
+                    }
+                    catch
+                    {
+                        var tmp_enemy = Instantiate(nenemy_pref, spawns[(int)Random.Range(0, spawns.Length)].position, Quaternion.identity);
+                        tmp_enemy.transform.parent = transform;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i <= lvl_var.max_enemies - 1; i++)
+                {
+                    var tmp_enemy = Instantiate(nenemy_pref, spawns[(int)Random.Range(0, spawns.Length)].position, Quaternion.identity);
+                    tmp_enemy.transform.parent = transform;
+                }
+            }
+        }
+        catch (System.NullReferenceException)
+        {
+            lvl_var = new save_load().loadmap(SceneManager.GetActiveScene().name);
+            spawn();
+        }
     }
 
     public void set_stats( )

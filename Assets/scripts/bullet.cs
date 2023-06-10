@@ -16,7 +16,7 @@ public class bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "enemy")
+        if (collision.gameObject.tag == "enemy" && !enemy)
         {
             var enemy_stats = collision.gameObject.GetComponent<enemy>();
             enemy_stats.stats.health -= damage;
