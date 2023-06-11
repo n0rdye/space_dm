@@ -48,11 +48,13 @@ public class enemy_manager : MonoBehaviour
 
     public void spawn()
     {
+        lvl_var = new save_load().loadmap(SceneManager.GetActiveScene().name);
+
         try
         {
             if (lvl_var.enemies_pos.Length > 0)
             {
-                for (int i = 0; i <= lvl_var.enemies_pos.Length - 1; i++)
+                for (int i = 0; i <= lvl_var.enemies_pos.Length -1; i++)
                 {
                     try
                     {
@@ -119,7 +121,7 @@ public class enemy_manager : MonoBehaviour
 
         Vector3[] transArray = new Vector3[enemies.Length];
 
-        for (int i = 0; i < enemies.Length; i++)
+        for (int i = 0; i != enemies.Length; i++)
         {
             transArray[i] = enemies[i].transform.position;
         }

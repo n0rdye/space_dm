@@ -8,6 +8,7 @@ public class trigger : MonoBehaviour
     public bool key = false;
     public inventory inv;
     public task_manager task;
+    public string pop_up;
     public string item;
     // Start is called before the first frame update
     void Start()
@@ -54,7 +55,7 @@ public class trigger : MonoBehaviour
         {
             if (key)
             {
-                task.set_message("press e to pick up "+item);
+                task.set_message(pop_up);
                 if (Input.GetKey(KeyCode.E))
                 {
                     triggered = true;

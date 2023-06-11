@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class task_manager : MonoBehaviour
 {
     public Text message_text;
+    public Text task_name;
+    public Text task_description;
     public task_vars tasks;
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,12 @@ public class task_manager : MonoBehaviour
         tasks.message = text;
         message_text.text = tasks.message;
         new save_load().savet(tasks);
+    }
+
+    public void set_task(string name, string description)
+    {
+        task_name.text = name;
+        task_description.text = description;
     }
 
     // Update is called once per frame

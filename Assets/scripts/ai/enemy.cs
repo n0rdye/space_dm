@@ -163,13 +163,13 @@ public class enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
+        manager.save();
         stats.drop.GetComponent<pick_up>().drop_stats = stats.dstats;
-        //var tmp = manager.lvl_var.enemies_pos;
-        //RemoveAt(ref tmp, tmp.Length -1);
-        //manager.lvl_var.enemies_pos = tmp; 
+        var tmp = manager.lvl_var.enemies_pos;
+        RemoveAt(ref tmp, tmp.Length -1);
+        manager.lvl_var.enemies_pos = tmp; 
         new save_load().savemap(manager.lvl_var);
         Instantiate(stats.drop, transform.position, transform.rotation);
-        manager.save();
     }
 
     public static void RemoveAt<T>(ref T[] arr, int index)

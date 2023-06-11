@@ -28,6 +28,7 @@ public class task1 : MonoBehaviour
             {
                 if (task.type == task.types.trigger && System.Array.IndexOf(tasks, task) == curr_task)
                 {
+                    manager.set_task(task.name, task.description);
                     task.trigger.SetActive(true);
                     if (task.trigger.GetComponent<trigger>().triggered == true)
                     {
@@ -37,6 +38,7 @@ public class task1 : MonoBehaviour
                 }
                 else if (task.type == task.types.kill && System.Array.IndexOf(tasks, task) == curr_task)
                 {
+                    manager.set_task(task.name, task.description);
                     curr_kulls = (curr_kulls == 0)? enemy_manager.lvl_var.enemies_pos.Length : curr_kulls;
                     if ((curr_kulls - enemy_manager.lvl_var.enemies_pos.Length) == task.kills)
                     {
@@ -46,6 +48,7 @@ public class task1 : MonoBehaviour
                 }
                 else if (task.type == task.types.pick_up && System.Array.IndexOf(tasks, task) == curr_task)
                 {
+                    manager.set_task(task.name, task.description);
                     task.trigger.SetActive(true);
                     if (task.trigger.GetComponent<trigger>().triggered == true && task.trigger.GetComponent<trigger>().item == task.item)
                     {

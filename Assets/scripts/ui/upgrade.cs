@@ -177,7 +177,7 @@ public class upgrade : MonoBehaviour
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
-        try { enemy_manager.set_stats(); } catch { }
+        try { enemy_manager.set_stats(); enemy_manager.save(); } catch { }
     }
     void damage_upgrade()
     {
@@ -197,7 +197,7 @@ public class upgrade : MonoBehaviour
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
-        try { enemy_manager.set_stats(); } catch { }
+        try { enemy_manager.set_stats(); enemy_manager.save(); } catch { }
     }
     void rspeed_upgrade()
     {
@@ -220,7 +220,7 @@ public class upgrade : MonoBehaviour
         inv.load();
         shooting.load();
         new save_load().saveup_w(inv.var.weapon,up_vars);
-        try { enemy_manager.set_stats(); } catch { }
+        try { enemy_manager.set_stats(); enemy_manager.save(); } catch { }
     }
 
     //player
@@ -240,7 +240,7 @@ public class upgrade : MonoBehaviour
         inv.save();
         new save_load().saveup_pl(pl_ups);
         inv.load();
-        try { enemy_manager.set_stats(); } catch { }
+        try { enemy_manager.set_stats(); enemy_manager.save(); } catch { }
     }
 
     void health_upgrade()
@@ -257,7 +257,7 @@ public class upgrade : MonoBehaviour
         inv.save();
         new save_load().saveup_pl(pl_ups);
         inv.load();
-        try { enemy_manager.set_stats(); } catch { }
+        try { enemy_manager.set_stats(); enemy_manager.save(); } catch { }
     }
 
 }
