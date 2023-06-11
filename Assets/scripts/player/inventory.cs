@@ -22,6 +22,7 @@ public class inventory : MonoBehaviour
     public Text materials_text;
     public bool canswitch = true;
     public GameObject compas;
+    public bool menu_active;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +50,9 @@ public class inventory : MonoBehaviour
 
     public void save()
     {
-        lvl_var.player_position = transform.position;
-        new save_load().save(var);
+        lvl_var.player_position = this.gameObject.transform.position;
         new save_load().savemap(lvl_var);
+        new save_load().save(var);
     }
 
     // Update is called once per frame
@@ -97,6 +98,18 @@ public class inventory : MonoBehaviour
             set_weapon("none");
         }
 
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !menu_active)
+        {
+            menu(true);
+            menu_active = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && menu_active)
+        {
+            menu(false);
+            menu_active = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             tab_menu.gameObject.SetActive(true);
@@ -126,7 +139,69 @@ public class inventory : MonoBehaviour
 
     }
 
-        public void tab(bool stop)
+    public void menu(bool stop)
+    {
+        var chr = this.gameObject.GetComponent<player_controler>();
+        if (stop)
+        {
+            Cursor.visible = true;
+
+            foreach (var item in weapons)
+            {
+                if (item.activeSelf)
+                {
+                    item.GetComponent<shooting>().canshoot = false;
+                    compas.SetActive(false);
+                }
+            }
+            var ui = tab_menu.transform.parent.transform;
+            var uis = new Transform[ui.childCount];
+            for (int i = 0; i < ui.childCount; i++)
+            {
+                uis[i] = ui.GetChild(i);
+                if (uis[i].gameObject.name != "menu" && uis[i].gameObject.name != "EventSystem")
+                {
+                    uis[i].gameObject.SetActive(false);
+                }
+                else
+                {
+                    uis[i].gameObject.SetActive(true);
+                }
+            }
+            chr.enabled = false;
+            Time.timeScale = 0f;
+        }
+        else if (!stop)
+        {
+            Cursor.visible = false;
+            foreach (var item in weapons)
+            {
+                if (item.activeSelf)
+                {
+                    item.GetComponent<shooting>().canshoot = true;
+                    compas.SetActive(false);
+                }
+            }
+            var ui = tab_menu.transform.parent.transform;
+            var uis = new Transform[ui.childCount];
+            for (int i = 0; i < ui.childCount; i++)
+            {
+                uis[i] = ui.GetChild(i);
+                if (uis[i].gameObject.name != "menu" && uis[i].gameObject.name != "tab")
+                {
+                    uis[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    uis[i].gameObject.SetActive(false);
+                }
+            }
+            chr.enabled = true;
+            Time.timeScale = 1.0f;
+        }
+    }
+
+    public void tab(bool stop)
     {
         var pl = this.gameObject.GetComponent<player_controler>();
         if (stop)

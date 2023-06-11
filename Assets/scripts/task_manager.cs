@@ -8,7 +8,7 @@ public class task_manager : MonoBehaviour
     public Text message_text;
     public Text task_name;
     public Text task_description;
-    public task1[] grand_tasks;
+    public tasker[] grand_tasks;
     public task_vars task_var;
 
     // Start is called before the first frame update

@@ -280,7 +280,7 @@ MonoBehaviour:
     timeBetweenAttacks: 1
     walkPointRange: 200
     speed: 6
-    drop: {fileID: 8146420769764467423, guid: 0e8b22fded11c32498916ab1abf17ee9, type: 3}
+    drop: {fileID: 2680025476352437012, guid: 5fd75ecf02a0323448b5dc4a6c75bc8a, type: 3}
     dstats:
       num: 1
       type: 0

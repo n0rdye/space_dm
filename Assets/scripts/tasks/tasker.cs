@@ -5,7 +5,7 @@ using System.IO;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class task1 : MonoBehaviour
+public class tasker : MonoBehaviour
 {
     public task_manager manager;
     public enemy_manager enemy_manager;
@@ -24,8 +24,6 @@ public class task1 : MonoBehaviour
         enemy_manager = GameObject.Find("enemies").GetComponent<enemy_manager>();
         ui = GameObject.FindGameObjectsWithTag("ui")[0].gameObject;
         prog_ui = ui.transform.Find("tasks/progress/value").gameObject.GetComponent<Text>();
-        compas = GameObject.FindGameObjectsWithTag("compas")[0].GetComponent<face_task>();
-
     }
 
     // Update is called once per frame
@@ -45,8 +43,13 @@ public class task1 : MonoBehaviour
                         task.complited = true;
                         Destroy(task.trigger.gameObject);
                     }
-                    compas.obj = task.trigger.transform;
                     prog_ui.text = ((int)Vector3.Distance(manager.transform.position, task.trigger.transform.position)/2).ToString() + " m";
+                    try
+                    {
+                        compas = GameObject.FindGameObjectsWithTag("compas")[0].GetComponent<face_task>();
+                        compas.obj = task.trigger.transform;
+                    }
+                    catch { }
                 }
                 else if (task.type == task.types.kill && System.Array.IndexOf(tasks, task) == manager.task_var.curr_task)
                 {
@@ -69,8 +72,13 @@ public class task1 : MonoBehaviour
                         task.complited = true;
                         Destroy(task.trigger.gameObject);
                     }
-                    compas.obj = task.trigger.transform;
                     prog_ui.text = ((int)Vector3.Distance(manager.transform.position, task.trigger.transform.position)/2).ToString()+" m";
+                    try
+                    {
+                        compas = GameObject.FindGameObjectsWithTag("compas")[0].GetComponent<face_task>();
+                        compas.obj = task.trigger.transform;
+                    }
+                    catch { }
                 }
 
             }
