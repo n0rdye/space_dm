@@ -153,7 +153,7 @@ public class save_load : MonoBehaviour
 
     public void savet(task_vars input)
     {
-        string savefile = get_path() + "/tasks.json";
+        string savefile = get_path() + "/maps/" + SceneManager.GetActiveScene().name + "_tasks.json";
         string jsonString = JsonUtility.ToJson(input);
         File.WriteAllText(savefile, jsonString);
         //Debug.Log("weapon saved");
@@ -163,7 +163,7 @@ public class save_load : MonoBehaviour
     {
         try
         {
-            string savefile = get_path() + "/tasks.json";
+            string savefile = get_path() +"/maps/"+ SceneManager.GetActiveScene().name + "_tasks.json";
             string varfile = File.ReadAllText(savefile);
             task_vars outp = JsonUtility.FromJson<task_vars>(varfile);
             //Debug.Log("weapon loaded");

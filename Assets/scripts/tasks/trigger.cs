@@ -19,11 +19,7 @@ public class trigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (triggered)
-        {
-            Destroy(gameObject);
-            task.set_message("");
-        }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -45,6 +41,7 @@ public class trigger : MonoBehaviour
             if (!key)
             {
                 triggered = true;
+                task.set_message("");
             }
         }
     }
@@ -59,6 +56,7 @@ public class trigger : MonoBehaviour
                 if (Input.GetKey(KeyCode.E))
                 {
                     triggered = true;
+                    task.set_message("");
                 }
             }
         }

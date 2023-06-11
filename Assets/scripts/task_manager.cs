@@ -8,19 +8,38 @@ public class task_manager : MonoBehaviour
     public Text message_text;
     public Text task_name;
     public Text task_description;
-    public task_vars tasks;
+    public task1[] grand_tasks;
+    public task_vars task_var;
+
     // Start is called before the first frame update
     void Start()
     {
-        tasks = new save_load().loadt();
+        task_var = new save_load().loadt();
         set_message("");
+        get_task();
+    }
+
+    public void get_task()
+    {
+        for (int i = 0; i <= grand_tasks.Length - 1; i++)
+        {
+            //Debug.Log(System.Array.IndexOf(grand_tasks, grand_tasks[i]));
+            if ((System.Array.IndexOf(grand_tasks, grand_tasks[i])) == task_var.curr_grand_task)
+            {
+                grand_tasks[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                grand_tasks[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     public void set_message(string text)
     {
-        tasks.message = text;
-        message_text.text = tasks.message;
-        new save_load().savet(tasks);
+        task_var.message = text;
+        message_text.text = task_var.message;
+        new save_load().savet(task_var);
     }
 
     public void set_task(string name, string description)
@@ -32,6 +51,12 @@ public class task_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //message_text.text = tasks.message;
+        if (grand_tasks[task_var.curr_grand_task].complited == true)
+        {
+            task_var.curr_task = 0;
+            task_var.curr_grand_task++;
+            get_task();
+            new save_load().savet(task_var);
+        }
     }
 }

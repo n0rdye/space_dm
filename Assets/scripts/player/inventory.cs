@@ -21,10 +21,14 @@ public class inventory : MonoBehaviour
     public Text[] player_text;
     public Text materials_text;
     public bool canswitch = true;
+    public GameObject compas;
 
     // Start is called before the first frame update
     void Start()
     {
+        compas = GameObject.FindGameObjectsWithTag("compas")[0];
+        compas.SetActive(false);
+
         load();
         set_weapon(var.weapon);
         Cursor.visible = false;
@@ -101,8 +105,10 @@ public class inventory : MonoBehaviour
                 if (item.activeSelf)
                 {
                     item.GetComponent<shooting>().canshoot = false;
+                    compas.SetActive(true);
                 }
             }
+            Time.timeScale = 0.6f;
         }
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
@@ -112,8 +118,10 @@ public class inventory : MonoBehaviour
                 if (item.activeSelf)
                 {
                     item.GetComponent<shooting>().canshoot = true;
+                    compas.SetActive(false);
                 }
             }
+            Time.timeScale = 1.0f;
         }
 
     }
@@ -131,6 +139,7 @@ public class inventory : MonoBehaviour
                 {
                     Cursor.visible = true;
                     item.GetComponent<shooting>().canshoot = false;
+                    compas.SetActive(true);
                     canswitch = false;
                     pl.sync = false;
                 }
@@ -146,6 +155,7 @@ public class inventory : MonoBehaviour
                 {
                     Cursor.visible = false;
                     item.GetComponent<shooting>().canshoot = true;
+                    compas.SetActive(false);
                     canswitch = true;
                     pl.sync = true;
                 }

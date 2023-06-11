@@ -11,6 +11,8 @@ TagManager:
   - ammo
   - upgrade_ui
   - roof
+  - ui
+  - compas
   layers:
   - Default
   - TransparentFX
