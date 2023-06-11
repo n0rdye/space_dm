@@ -11,6 +11,8 @@ public class trigger : MonoBehaviour
     public string pop_up;
     public string item;
     public bool wait;
+    public float time;
+    public float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +39,24 @@ public class trigger : MonoBehaviour
     {
         if (other.gameObject.tag == "player" && !triggered)
         {
+            timer = 0;
             inv = other.gameObject.GetComponent<inventory>();
             task = inv.gameObject.GetComponent<task_manager>();
             if (!press_key)
             {
-                triggered = true;
-                task.set_message("");
+                if (wait)
+                {
+                    if(timer >= time)
+                    {
+                        triggered = true;
+                        task.set_message("");
+                    }
+                }
+                else if (!wait)
+                {
+                    triggered = true;
+                    task.set_message("");
+                }
             }
         }
     }
@@ -51,13 +65,33 @@ public class trigger : MonoBehaviour
     {
         if (other.gameObject.tag == "player" && !triggered)
         {
+            timer += Time.deltaTime;
             if (press_key)
             {
                 task.set_message(pop_up);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    timer = 0;
+                }
                 if (Input.GetKey(KeyCode.E))
                 {
-                    triggered = true;
-                    task.set_message("");
+                    if (wait)
+                    {
+                        if (timer >= time)
+                        {
+                            triggered = true;
+                            task.set_message("");
+                        }
+                    }
+                    else if (!wait)
+                    {
+                        triggered = true;
+                        task.set_message("");
+                    }
+                }
+                else if (Input.GetKeyUp(KeyCode.E))
+                {
+                    timer = 0;
                 }
             }
         }
