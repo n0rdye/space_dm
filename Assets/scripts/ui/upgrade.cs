@@ -136,22 +136,42 @@ public class upgrade : MonoBehaviour
                     {
                         weapon_stats_button[0].gameObject.SetActive(false);
                     }
+                    else
+                    {
+                        weapon_stats_button[0].gameObject.SetActive(true);
+                    }
                     if (up_vars.damage.lvl >= up_vars.damage.max_lvl)
                     {
                         weapon_stats_button[1].gameObject.SetActive(false);
                     }
+                    else
+                    {
+                        weapon_stats_button[1].gameObject.SetActive(true);
+                    }
                     if (up_vars.reload_speed.lvl >= up_vars.reload_speed.max_lvl)
                     {
                         weapon_stats_button[2].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        weapon_stats_button[2].gameObject.SetActive(true);
                     }
 
                     if (pl_ups.dash_time.lvl >= pl_ups.dash_time.max_lvl)
                     {
                         player_stats_button[0].gameObject.SetActive(false);
                     }
+                    else
+                    {
+                        player_stats_button[0].gameObject.SetActive(true);
+                    }
                     if (pl_ups.health.lvl >= pl_ups.health.max_lvl)
                     {
                         player_stats_button[1].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        player_stats_button[1].gameObject.SetActive(true);
                     }
                 }
                 catch { }
