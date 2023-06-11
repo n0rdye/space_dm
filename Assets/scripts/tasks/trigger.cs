@@ -5,11 +5,12 @@ using UnityEngine;
 public class trigger : MonoBehaviour
 {
     public bool triggered = false;
-    public bool key = false;
+    public bool press_key = false;
     public inventory inv;
     public task_manager task;
     public string pop_up;
     public string item;
+    public bool wait;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +39,7 @@ public class trigger : MonoBehaviour
         {
             inv = other.gameObject.GetComponent<inventory>();
             task = inv.gameObject.GetComponent<task_manager>();
-            if (!key)
+            if (!press_key)
             {
                 triggered = true;
                 task.set_message("");
@@ -50,7 +51,7 @@ public class trigger : MonoBehaviour
     {
         if (other.gameObject.tag == "player" && !triggered)
         {
-            if (key)
+            if (press_key)
             {
                 task.set_message(pop_up);
                 if (Input.GetKey(KeyCode.E))

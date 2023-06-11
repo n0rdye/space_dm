@@ -23,7 +23,7 @@ public class save_load : MonoBehaviour
             string savefile = get_path() + "/vars.json";
             string varfile = File.ReadAllText(savefile);
             vars outp = JsonUtility.FromJson<vars>(varfile);
-            //Debug.Log("loaded");
+            //Debug.Log("load vars");
             return outp;
         }
         catch (FileNotFoundException)
@@ -38,7 +38,7 @@ public class save_load : MonoBehaviour
         string savefile = get_path() + "/vars.json";
         string jsonString = JsonUtility.ToJson(input);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("saved");
+        //Debug.Log("save vars");
     }
 
 
@@ -47,7 +47,7 @@ public class save_load : MonoBehaviour
         string savefile = get_path() + "/weapon/" + name + ".json";
         string jsonString = JsonUtility.ToJson(input);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
+        //Debug.Log("savew saved");
     }
 
     public void savewn(int cur_ammo,int max_ammo, int inv_ammo, int damage, float reload_speed,float firerate, bool unlock,string name)
@@ -63,8 +63,9 @@ public class save_load : MonoBehaviour
         wp.unlock = unlock;
         string jsonString = JsonUtility.ToJson(wp);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
+        //Debug.Log("savewn saved");
     }
+
     //public void add_ammo(string name, int ammo)
     //{
     //    string savefile = get_path() + "/weapon/" + name + ".json";
@@ -80,7 +81,7 @@ public class save_load : MonoBehaviour
         string savefile = get_path() + "/weapon/"+name+ "_upgrades.json";
         string jsonString = JsonUtility.ToJson(input);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
+        //Debug.Log("saveup_w saved");
     }
 
     public void saveupn_w(string name, ups reload_speed, ups damage, ups max_ammo)
@@ -92,7 +93,7 @@ public class save_load : MonoBehaviour
         upgrade.reload_speed = reload_speed;
         string jsonString = JsonUtility.ToJson(upgrade);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
+        //Debug.Log("saveupn_w saved");
     }
 
     public weapon_ups loadup_w(string name)
@@ -102,7 +103,7 @@ public class save_load : MonoBehaviour
             string savefile = get_path() + "/weapon/"+name+ "_upgrades.json";
             string varfile = File.ReadAllText(savefile);
             weapon_ups outp = JsonUtility.FromJson<weapon_ups>(varfile);
-            //Debug.Log("weapon loaded");
+            //Debug.Log("loadup_w loaded");
             return outp;
         }
         catch (FileNotFoundException)
@@ -119,7 +120,7 @@ public class save_load : MonoBehaviour
         string savefile = get_path() + "/upgrade.json";
         string jsonString = JsonUtility.ToJson(input);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
+        //Debug.Log("saveup_pl saved");
     }
 
     public void saveupn_pl( ups dash_time, ups health)
@@ -130,7 +131,7 @@ public class save_load : MonoBehaviour
         upgrade.dash_time = dash_time;
         string jsonString = JsonUtility.ToJson(upgrade);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
+        //Debug.Log("saveupn_pl saved");
     }
 
     public player_ups loadup_pl()
@@ -140,7 +141,7 @@ public class save_load : MonoBehaviour
             string savefile = get_path() + "/upgrade.json";
             string varfile = File.ReadAllText(savefile);
             player_ups outp = JsonUtility.FromJson<player_ups>(varfile);
-            //Debug.Log("weapon loaded");
+            //Debug.Log("loadup_pl loaded");
             return outp;
         }
         catch (FileNotFoundException)
@@ -156,7 +157,7 @@ public class save_load : MonoBehaviour
         string savefile = get_path() + "/maps/" + SceneManager.GetActiveScene().name + "_tasks.json";
         string jsonString = JsonUtility.ToJson(input);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
+        //Debug.Log("savet saved");
     }
 
     public task_vars loadt()
@@ -166,7 +167,7 @@ public class save_load : MonoBehaviour
             string savefile = get_path() +"/maps/"+ SceneManager.GetActiveScene().name + "_tasks.json";
             string varfile = File.ReadAllText(savefile);
             task_vars outp = JsonUtility.FromJson<task_vars>(varfile);
-            //Debug.Log("weapon loaded");
+            //Debug.Log("loadt loaded");
             return outp;
         }
         catch (FileNotFoundException)
@@ -184,7 +185,7 @@ public class save_load : MonoBehaviour
             string savefile = get_path() + "/weapon/" + name + ".json";
             string varfile = File.ReadAllText(savefile);
             weapon outp = JsonUtility.FromJson<weapon>(varfile);
-            //Debug.Log("weapon loaded");
+            //Debug.Log("loadw loaded");
             return outp;
         }
         catch (FileNotFoundException)
@@ -214,7 +215,7 @@ public class save_load : MonoBehaviour
         string savefile = get_path() +"/maps/"+ SceneManager.GetActiveScene().name + ".json";
         string jsonString = JsonUtility.ToJson(input);
         File.WriteAllText(savefile, jsonString);
-        //Debug.Log("weapon saved");
+        //Debug.Log("savemap saved");
     }
 
     public map_lvl loadmap(string name)
@@ -224,7 +225,7 @@ public class save_load : MonoBehaviour
             string savefile = get_path() + "/maps/" + name + ".json";
             string varfile = File.ReadAllText(savefile);
             map_lvl outp = JsonUtility.FromJson<map_lvl>(varfile);
-            //Debug.Log("weapon loaded");
+            //Debug.Log("loadmap loaded");
             return outp;
         }
         catch (FileNotFoundException)
@@ -281,7 +282,7 @@ public class save_load : MonoBehaviour
 
     public void uprestat_pl()
     {
-        Debug.Log("pl stats restart");
+        //Debug.Log("pl stats restart");
         var pl_dt = new ups();
         pl_dt.cost = 25;
         pl_dt.up = 0.4f;

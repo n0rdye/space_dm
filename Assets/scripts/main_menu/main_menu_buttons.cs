@@ -62,7 +62,7 @@ public class main_menu_buttons : MonoBehaviour
             float prog = Mathf.Clamp01(loading.progress / .9f);
 
             loadingText.text = prog * 100f + "%";
-            Debug.Log(prog);
+            //Debug.Log(prog);
 
             yield return null;
         }

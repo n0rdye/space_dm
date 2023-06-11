@@ -31,9 +31,9 @@ public class player_controler : MonoBehaviour
     }
 
     void Update () {
-        var = new save_load().load();
+         //var = new save_load().load();
         // перемещение перса
-         CharacterController controller = GetComponent<CharacterController>();
+        CharacterController controller = GetComponent<CharacterController>();
          if (controller.isGrounded) {
              moveDirection = new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
              moveDirection = transform.TransformDirection(moveDirection);
@@ -105,7 +105,7 @@ public class player_controler : MonoBehaviour
         {
             speed = var.speed;
         }
-        
+
     }
 
     void rotation_sync()

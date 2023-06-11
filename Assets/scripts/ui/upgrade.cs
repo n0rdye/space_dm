@@ -257,9 +257,11 @@ public class upgrade : MonoBehaviour
         inv.var.player_lvl += 0.2f;
         inv.lvl_var.max_enemies += 0.03f;
 
+
         inv.save();
         new save_load().saveup_pl(pl_ups);
         inv.load();
+        inv.gameObject.GetComponent<player_controler>().var = new save_load().load();
         try { enemy_manager.set_stats(); enemy_manager.save(); } catch { }
     }
 
@@ -277,6 +279,7 @@ public class upgrade : MonoBehaviour
         inv.save();
         new save_load().saveup_pl(pl_ups);
         inv.load();
+        inv.gameObject.GetComponent<player_controler>().var = new save_load().load();
         try { enemy_manager.set_stats(); enemy_manager.save(); } catch { }
     }
 
