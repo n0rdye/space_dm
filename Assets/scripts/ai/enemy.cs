@@ -105,6 +105,7 @@ public class enemy : MonoBehaviour
         manager.hit(this.gameObject);
         //share.gameObject.SetActive(true);
         last_seen = player;
+        walkPointSet = false;
         //share.gameObject.SetActive(false);
         //playerInAttackRange = Physics.CheckSphere(transform.position, stats.sightRange, whatIsPlayer);
 
@@ -169,15 +170,18 @@ public class enemy : MonoBehaviour
     IEnumerator die()
     {
         yield return new WaitForSeconds(0.2f);
-        Destroy(gameObject);
         manager.save();
         stats.drop.GetComponent<pick_up>().drop_stats = stats.dstats;
+        Instantiate(stats.drop, transform.position, transform.rotation);
+        Destroy(gameObject);
+
+
         var tmp = manager.lvl_var.enemies_pos;
         RemoveAt(ref tmp, tmp.Length -1);
         manager.lvl_var.enemies_pos = tmp;
+
         manager.kills--;
         new save_load().savemap(manager.lvl_var);
-        Instantiate(stats.drop, transform.position, transform.rotation);
     }
 
     public static void RemoveAt<T>(ref T[] arr, int index)

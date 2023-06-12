@@ -91,12 +91,35 @@ public class enemy_manager : MonoBehaviour
 
         for (int i = 0; i <= count-1; i++)
         {
-            var tmp_enemy = Instantiate(nenemy_pref, (pos * (int)Random.Range(2, -2)), Quaternion.identity);
+            var tmp_enemy = Instantiate(nenemy_pref, new Vector3(pos.x * rendom_pos(0.5f,2),0, pos.z * rendom_pos(0.5f, 2)), Quaternion.identity);
             tmp_enemy.transform.parent = transform;
         }
 
         save();
 
+    }
+
+    public float rendom_pos(float min, float max)
+    {
+        float rpos = 0;
+        while (true) {
+            rpos = Random.Range(-max, max);
+            if (rpos < 0)
+            {
+                if (rpos < -min)
+                {
+                    break;
+                }
+            }
+            else if (rpos > 0)
+            {
+                if (rpos > min)
+                {
+                    break;
+                }
+            }
+        }
+        return rpos;
     }
 
     public void set_stats( )

@@ -23,7 +23,7 @@ public class tasker : MonoBehaviour
         enemy_manager = GameObject.Find("enemies").GetComponent<enemy_manager>();
         ui = GameObject.FindGameObjectsWithTag("ui")[0].gameObject;
         prog_ui = ui.transform.Find("tasks/progress/value").gameObject.GetComponent<Text>();
-        enemy_manager.kills = manager.task_var.curr_kills;
+        if (enemy_manager.kills != manager.task_var.curr_kills) { enemy_manager.kills = manager.task_var.curr_kills; }
     }
 
     // Update is called once per frame
@@ -71,6 +71,20 @@ public class tasker : MonoBehaviour
                         manager.task_var.curr_kills = -1;
                     }
                     prog_ui.text = (enemy_manager.kills).ToString();
+
+                    try { compas = GameObject.FindGameObjectsWithTag("compas")[0].GetComponent<face_task>(); } catch { }
+                    //var random_enemy = (int)Random.Range(0, enemy_manager.enemies.Length - 1);
+                    //Debug.Log(random_enemy);
+                    var min = enemy_manager.enemies[0].transform;
+                    var chr = manager.gameObject.transform.position;
+                    foreach (var enemy in enemy_manager.enemies)
+                    {
+                        if (Vector3.Distance(chr, min.position) > Vector3.Distance(chr, enemy.transform.position))
+                        {
+                            min = enemy.transform;
+                        }
+                    }
+                    compas.obj = min;
                 }
                 else if (task.type == task.types.pick_up && System.Array.IndexOf(tasks, task) == manager.task_var.curr_task)
                 {

@@ -66,13 +66,13 @@ public class player_controler : MonoBehaviour
             //cameraDistance += (Input.GetAxis("Mouse ScrollWheel") * 10);
             Camera.main.orthographicSize += Input.GetAxis("Mouse ScrollWheel");
         }
-        else if (Camera.main.orthographicSize <= 4)
+        else if (Camera.main.orthographicSize <= 5)
         {
-            Camera.main.orthographicSize = 4;
+            Camera.main.orthographicSize = 5;
         }
-        else if (Camera.main.orthographicSize >= 10)
+        else if (Camera.main.orthographicSize >= 15)
         {
-            Camera.main.orthographicSize = 10;
+            Camera.main.orthographicSize = 15;
         }
 
         if (sync) rotation_sync();

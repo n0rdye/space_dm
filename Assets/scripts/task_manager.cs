@@ -21,18 +21,22 @@ public class task_manager : MonoBehaviour
 
     public void get_task()
     {
-        for (int i = 0; i <= grand_tasks.Length - 1; i++)
+        try
         {
-            //Debug.Log(System.Array.IndexOf(grand_tasks, grand_tasks[i]));
-            if ((System.Array.IndexOf(grand_tasks, grand_tasks[i])) == task_var.curr_grand_task)
+            for (int i = 0; i <= grand_tasks.Length - 1; i++)
             {
-                grand_tasks[i].gameObject.SetActive(true);
-            }
-            else
-            {
-                grand_tasks[i].gameObject.SetActive(false);
+                //Debug.Log(System.Array.IndexOf(grand_tasks, grand_tasks[i]));
+                if ((System.Array.IndexOf(grand_tasks, grand_tasks[i])) == task_var.curr_grand_task)
+                {
+                    grand_tasks[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    grand_tasks[i].gameObject.SetActive(false);
+                }
             }
         }
+        catch { }
     }
 
     public void set_message(string text)
@@ -51,12 +55,19 @@ public class task_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (grand_tasks[task_var.curr_grand_task].complited == true)
+        try
         {
-            task_var.curr_task = 0;
-            task_var.curr_grand_task++;
-            get_task();
-            new save_load().savet(task_var);
+            if (grand_tasks[task_var.curr_grand_task].complited == true)
+            {
+                task_var.curr_task = 0;
+                task_var.curr_grand_task++;
+                get_task();
+                new save_load().savet(task_var);
+            }
+        }
+        catch (System.NullReferenceException)
+        {
+            Debug.Log("all taks complited");
         }
     }
 }

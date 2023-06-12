@@ -1009,8 +1009,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.37494, y: -73.699}
-  m_SizeDelta: {x: 134.7521, y: 87.3983}
+  m_AnchoredPosition: {x: -100.49, y: -73.699}
+  m_SizeDelta: {x: 200.98, y: 87.3983}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &98750183
 MonoBehaviour:
@@ -1596,7 +1596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279255456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.48, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1615,7 +1615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9dc7f00127a074eacfda7ae5b9627a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit_obj: {fileID: 0}
   hit_obj_color: {r: 0, g: 0, b: 0, a: 0}
   tmp_color: {r: 0, g: 0, b: 0, a: 0}
   top: {fileID: 279255456}
@@ -3145,8 +3144,8 @@ Transform:
   m_Children:
   - {fileID: 705507995}
   - {fileID: 14854553}
-  - {fileID: 1628506714}
   - {fileID: 562539991}
+  - {fileID: 1628506714}
   - {fileID: 1396468634}
   - {fileID: 1187669637}
   - {fileID: 643767778}
@@ -3527,7 +3526,7 @@ GameObject:
   - component: {fileID: 643767779}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: roof
+  m_TagString: hide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3588,7 +3587,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cdba7fff7fc2dca46abb02685f22031a, type: 2}
+  - {fileID: 2100000, guid: e90243019078d8940b3e6b2dd1758dec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6166,7 +6165,7 @@ GameObject:
   - component: {fileID: 1187669638}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: roof
+  m_TagString: hide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6227,7 +6226,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cdba7fff7fc2dca46abb02685f22031a, type: 2}
+  - {fileID: 2100000, guid: e90243019078d8940b3e6b2dd1758dec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6948,7 +6947,7 @@ GameObject:
   - component: {fileID: 1396468635}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: roof
+  m_TagString: hide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7009,7 +7008,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cdba7fff7fc2dca46abb02685f22031a, type: 2}
+  - {fileID: 2100000, guid: e90243019078d8940b3e6b2dd1758dec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8040,7 +8039,7 @@ GameObject:
   - component: {fileID: 1628506715}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: roof
+  m_TagString: hide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8101,7 +8100,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cdba7fff7fc2dca46abb02685f22031a, type: 2}
+  - {fileID: 2100000, guid: e90243019078d8940b3e6b2dd1758dec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8290,7 +8289,7 @@ GameObject:
   - component: {fileID: 1689701940}
   m_Layer: 0
   m_Name: Cube (6)
-  m_TagString: roof
+  m_TagString: hide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10065,8 +10064,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -725.6653, y: -15}
-  m_SizeDelta: {x: 140.3642, y: 30}
+  m_AnchoredPosition: {x: -663.3104, y: -20}
+  m_SizeDelta: {x: 136.6208, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1997629980
 MonoBehaviour:
@@ -10095,7 +10094,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 2
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -10226,7 +10225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -725.8, y: -15}
+  m_AnchoredPosition: {x: -725.8, y: -20}
   m_SizeDelta: {x: 140.0749, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2032968403
@@ -10527,7 +10526,7 @@ GameObject:
   - component: {fileID: 2046969298}
   m_Layer: 0
   m_Name: Cube (5)
-  m_TagString: roof
+  m_TagString: hide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10588,7 +10587,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cdba7fff7fc2dca46abb02685f22031a, type: 2}
+  - {fileID: 2100000, guid: e90243019078d8940b3e6b2dd1758dec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11036,8 +11035,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.374, y: -15}
-  m_SizeDelta: {x: 134.7521, y: 30}
+  m_AnchoredPosition: {x: -20.4729, y: -15}
+  m_SizeDelta: {x: 216.2419, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2103468812
 MonoBehaviour:
@@ -11066,7 +11065,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 8
+    m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

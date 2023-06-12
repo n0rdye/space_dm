@@ -107,7 +107,7 @@ public class upgrade : MonoBehaviour
                     inv.tab(false);
                     ui_canvas.SetActive(false);
                     pl_canvas.SetActive(false);
-                    task.set_message("press e to open upgrade menu");
+                    task.set_message("hold tab to open upgrade menu");
                 }
 
 
