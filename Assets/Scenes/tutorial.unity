@@ -1812,8 +1812,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggered: 0
   press_key: 1
-  inv: {fileID: 0}
-  task: {fileID: 0}
   pop_up: 
   item: pistol
   time: 0
@@ -4218,17 +4216,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259350e336bbefb499e779d0a5ecfcc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   lvl_var:
     enemy_lvl: 0
     max_enemies: 0
     enemies_pos: []
     player_position: {x: 0, y: 0, z: 0}
     past: 0
+  enemies: []
   spawns:
   - {fileID: 1974812515}
   - {fileID: 199259194}
-  enemies: []
   nenemy_pref: {fileID: 5397034750481898055, guid: cb154c13f9a8e984fa917e7d4127d2ba, type: 3}
   kills: -1
   map_enemies: 0
@@ -4369,8 +4366,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  manager: {fileID: 0}
-  walkPoint: {x: 0, y: 0, z: 0}
   projectile: {fileID: 4779928266417708752, guid: 47ff0a28ccf9a27409e3ffb17bb004b2, type: 3}
   spawns: {fileID: 267753518}
   walkPointSet: 0
@@ -5567,8 +5562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quit_button: {fileID: 944868243}
-  inv: {fileID: 0}
-  enemy_manager: {fileID: 0}
   version: {fileID: 835718429}
   curr_scene:
     m_Handle: 0
@@ -5732,7 +5725,6 @@ MonoBehaviour:
   - {fileID: 2000152535}
   materials_text: {fileID: 1227590116}
   canswitch: 1
-  compas: {fileID: 0}
   menu_active: 0
 --- !u!114 &1090689454
 MonoBehaviour:
@@ -5751,7 +5743,6 @@ MonoBehaviour:
   task_description: {fileID: 98750183}
   grand_tasks:
   - {fileID: 1564779314}
-  - {fileID: 0}
   task_var:
     message: ' '
     tasks: []
@@ -7616,8 +7607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607a2b52a1692494ca4eedc6db77bcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  enemy_manager: {fileID: 0}
   complited: 0
   tasks:
   - complited: 0
@@ -7660,9 +7649,6 @@ MonoBehaviour:
     type: 1
     name: destroy 3 robots
     description: 
-  ui: {fileID: 0}
-  prog_ui: {fileID: 0}
-  compas: {fileID: 0}
 --- !u!4 &1564779315
 Transform:
   m_ObjectHideFlags: 0
@@ -8551,8 +8537,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggered: 0
   press_key: 0
-  inv: {fileID: 0}
-  task: {fileID: 0}
   pop_up: 
   item: 
   time: 0
@@ -9551,8 +9535,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggered: 0
   press_key: 1
-  inv: {fileID: 0}
-  task: {fileID: 0}
   pop_up: here you can upgrade /n your weapons and suit /n hold tab to open uphrade
     menu
   item: upgrade

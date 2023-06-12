@@ -7,14 +7,14 @@ using UnityEngine.UI;
 [System.Serializable]
 public class tasker : MonoBehaviour
 {
-    public task_manager manager;
-    public enemy_manager enemy_manager;
+    private task_manager manager;
+    private enemy_manager enemy_manager;
     public bool complited = false;
     //public bool auto_give = false;
     public task[] tasks;
-    public GameObject ui;
-    public Text prog_ui;
-    public face_task compas;
+    private GameObject ui;
+    private Text prog_ui;
+    private face_task compas;
 
     // Start is called before the first frame update
     void Start()

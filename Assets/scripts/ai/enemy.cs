@@ -11,10 +11,10 @@ public class enemy : MonoBehaviour
     public float ammo;
 
     public LayerMask whatIsGround, whatIsPlayer;
-    public enemy_manager manager = null;
+    private enemy_manager manager = null;
 
     //Patroling
-    public Vector3 walkPoint;
+    private Vector3 walkPoint;
 
     //Attacking
     public Transform projectile;

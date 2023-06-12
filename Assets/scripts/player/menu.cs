@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class menu : MonoBehaviour
 {
     public Button quit_button;
-    public inventory inv;
-    public enemy_manager enemy_manager;
+    private inventory inv;
+    private enemy_manager enemy_manager;
     public Text version;
     public Scene curr_scene;
 

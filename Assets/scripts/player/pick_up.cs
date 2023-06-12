@@ -6,7 +6,7 @@ using UnityEngine;
 public class pick_up : MonoBehaviour
 {
     public drop_stats drop_stats;
-    public task_manager task;
+    private task_manager task;
 
     void Start()
     {

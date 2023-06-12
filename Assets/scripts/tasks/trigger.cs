@@ -6,8 +6,8 @@ public class trigger : MonoBehaviour
 {
     public bool triggered = false;
     public bool press_key = false;
-    public inventory inv;
-    public task_manager task;
+    private inventory inv;
+    private task_manager task;
     public string pop_up;
     public string item;
     public float time;

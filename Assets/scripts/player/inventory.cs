@@ -21,7 +21,7 @@ public class inventory : MonoBehaviour
     public Text[] player_text;
     public Text materials_text;
     public bool canswitch = true;
-    public GameObject compas;
+    private GameObject compas;
     public bool menu_active;
 
     // Start is called before the first frame update

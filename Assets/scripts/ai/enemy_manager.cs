@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class enemy_manager : MonoBehaviour
 {
-    public Transform player;
+    private Transform player;
     public map_lvl lvl_var;
-    public Transform[] spawns;
     public GameObject[] enemies;
+    public Transform[] spawns;
     public GameObject nenemy_pref;
     public int kills = -1;
     public float map_enemies;
