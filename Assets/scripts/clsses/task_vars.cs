@@ -9,6 +9,7 @@ public class task_vars
 {
     public string message = " ";
     public task[] tasks;
+    public int curr_kills = -1;
     public int curr_task = 0;
     public int curr_grand_task = 0;
     //public task1 grand_task;

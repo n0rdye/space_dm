@@ -10,6 +10,7 @@ public class enemy_manager : MonoBehaviour
     public Transform[] spawns;
     public GameObject[] enemies;
     public GameObject nenemy_pref;
+    public int kills = -1;
     public float map_enemies;
 
     // Start is called before the first frame update
@@ -82,6 +83,20 @@ public class enemy_manager : MonoBehaviour
             lvl_var = new save_load().loadmap(SceneManager.GetActiveScene().name);
             spawn();
         }
+    }
+
+    public void force_spawn(Vector3 pos,int count)
+    {
+        lvl_var = new save_load().loadmap(SceneManager.GetActiveScene().name);
+
+        for (int i = 0; i <= count-1; i++)
+        {
+            var tmp_enemy = Instantiate(nenemy_pref, (pos * (int)Random.Range(2, -2)), Quaternion.identity);
+            tmp_enemy.transform.parent = transform;
+        }
+
+        save();
+
     }
 
     public void set_stats( )

@@ -9,9 +9,8 @@ public class tasker : MonoBehaviour
 {
     public task_manager manager;
     public enemy_manager enemy_manager;
-    public int curr_kulls;
     public bool complited = false;
-    public bool auto_give = false;
+    //public bool auto_give = false;
     public task[] tasks;
     public GameObject ui;
     public Text prog_ui;
@@ -24,6 +23,7 @@ public class tasker : MonoBehaviour
         enemy_manager = GameObject.Find("enemies").GetComponent<enemy_manager>();
         ui = GameObject.FindGameObjectsWithTag("ui")[0].gameObject;
         prog_ui = ui.transform.Find("tasks/progress/value").gameObject.GetComponent<Text>();
+        enemy_manager.kills = manager.task_var.curr_kills;
     }
 
     // Update is called once per frame
@@ -53,14 +53,24 @@ public class tasker : MonoBehaviour
                 }
                 else if (task.type == task.types.kill && System.Array.IndexOf(tasks, task) == manager.task_var.curr_task)
                 {
-                    manager.set_task(task.name, task.description);
-                    curr_kulls = (curr_kulls == 0)? enemy_manager.lvl_var.enemies_pos.Length : curr_kulls;
-                    if ((curr_kulls - enemy_manager.lvl_var.enemies_pos.Length) == task.kills)
+                    if (enemy_manager.kills < 0)
                     {
-                        manager.task_var.curr_task++;
-                        task.complited = true;
+                        enemy_manager.kills = task.kills;
                     }
-                    prog_ui.text = (curr_kulls - enemy_manager.lvl_var.enemies_pos.Length).ToString();
+                    if (task.spawn_on_player)
+                    {
+                        enemy_manager.force_spawn(manager.gameObject.transform.position, task.kills);
+                        task.spawn_on_player = false;
+                    }
+                    manager.task_var.curr_kills = enemy_manager.kills;
+                    manager.set_task(task.name, task.description);
+                    if (enemy_manager.kills == 0)
+                    {
+                        task.complited = true;
+                        manager.task_var.curr_task++;
+                        manager.task_var.curr_kills = -1;
+                    }
+                    prog_ui.text = (enemy_manager.kills).ToString();
                 }
                 else if (task.type == task.types.pick_up && System.Array.IndexOf(tasks, task) == manager.task_var.curr_task)
                 {

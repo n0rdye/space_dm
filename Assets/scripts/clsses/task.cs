@@ -11,6 +11,7 @@ public class task
     public Scene map;
     public enum types { trigger,kill,pick_up };
     public int kills;
+    public bool spawn_on_player;
     public string item;
     public GameObject trigger;
     public types type;

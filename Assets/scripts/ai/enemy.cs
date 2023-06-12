@@ -14,7 +14,7 @@ public class enemy : MonoBehaviour
     public enemy_manager manager = null;
 
     //Patroling
-    Vector3 walkPoint;
+    public Vector3 walkPoint;
 
     //Attacking
     public Transform projectile;
@@ -140,6 +140,10 @@ public class enemy : MonoBehaviour
                 last_seen = null;
                 StartCoroutine(pointsearch());
             }
+            else
+            {
+                Debug.Log("set ground layer on floor");
+            }
 
 
         }
@@ -149,6 +153,9 @@ public class enemy : MonoBehaviour
 
             if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
                 StartCoroutine(pointsearch());
+            else
+                Debug.Log("set ground layer on floor");
+
         }
     }
     IEnumerator pointsearch(){
@@ -167,7 +174,8 @@ public class enemy : MonoBehaviour
         stats.drop.GetComponent<pick_up>().drop_stats = stats.dstats;
         var tmp = manager.lvl_var.enemies_pos;
         RemoveAt(ref tmp, tmp.Length -1);
-        manager.lvl_var.enemies_pos = tmp; 
+        manager.lvl_var.enemies_pos = tmp;
+        manager.kills--;
         new save_load().savemap(manager.lvl_var);
         Instantiate(stats.drop, transform.position, transform.rotation);
     }
