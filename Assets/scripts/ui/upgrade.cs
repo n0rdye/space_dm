@@ -85,7 +85,10 @@ public class upgrade : MonoBehaviour
             inv = other.gameObject.GetComponent<inventory>();
             task = inv.gameObject.GetComponent<task_manager>();
             if (task.task_var.message == "") { message = true; }
-            if (message) task.set_message("hold tab to open upgrade menu");
+            if (inv.var.weapon != "none")
+            {
+                if (message) task.set_message("hold tab to open upgrade menu");
+            }
         }
     }
 

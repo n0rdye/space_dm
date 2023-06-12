@@ -112,6 +112,9 @@ public class inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            var chr = this.gameObject.GetComponent<player_controler>();
+            chr.sync = false;
+
             tab_menu.gameObject.SetActive(true);
             foreach (var item in weapons)
             {
@@ -122,9 +125,13 @@ public class inventory : MonoBehaviour
                 }
             }
             Time.timeScale = 0.6f;
+
         }
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
+            var chr = this.gameObject.GetComponent<player_controler>();
+            chr.sync = true;
+
             tab_menu.gameObject.SetActive(false);
             foreach (var item in weapons)
             {

@@ -72,21 +72,23 @@ public class tasker : MonoBehaviour
                     }
                     prog_ui.text = (enemy_manager.kills).ToString();
 
-                    try { compas = GameObject.FindGameObjectsWithTag("compas")[0].GetComponent<face_task>(); } catch { }
-                    //var random_enemy = (int)Random.Range(0, enemy_manager.enemies.Length - 1);
-                    //Debug.Log(random_enemy);
-                    var min = enemy_manager.enemies[0].transform;
-                    var chr = manager.gameObject.transform.position;
-                    foreach (var enemy in enemy_manager.enemies)
-                    {
-                        if (Vector3.Distance(chr, min.position) > Vector3.Distance(chr, enemy.transform.position))
-                        {
-                            min = enemy.transform;
-                        }
-                    }
                     try
                     {
-                    compas.obj = min;
+                        enemy_manager.set_stats();
+                        compas = GameObject.FindGameObjectsWithTag("compas")[0].GetComponent<face_task>();
+                        //var random_enemy = (int)Random.Range(0, enemy_manager.enemies.Length - 1);
+                        //Debug.Log(random_enemy);
+                        var min = enemy_manager.enemies[0].transform;
+                        var chr = manager.gameObject.transform.position;
+                        foreach (var enemy in enemy_manager.enemies)
+                        {
+                            if (Vector3.Distance(chr, min.position) > Vector3.Distance(chr, enemy.transform.position))
+                            {
+                                min = enemy.transform;
+                            }
+                        }
+                    
+                        compas.obj = min;
 
                     }catch { }
                 }

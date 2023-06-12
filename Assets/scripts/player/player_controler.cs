@@ -60,7 +60,7 @@ public class player_controler : MonoBehaviour
         Camera.main.transform.LookAt(transform.position + new Vector3(-offsetVector.y * aim, 0, offsetVector.x * aim));
 
 
-        if (Input.GetAxis("Mouse ScrollWheel") != 0 && Camera.main.orthographicSize <= 10 && Camera.main.orthographicSize >= 4)
+        if (Input.GetAxis("Mouse ScrollWheel") != 0 && Camera.main.orthographicSize <= 15 && Camera.main.orthographicSize >= 5)
         {
             //cameraHeight += (Input.GetAxis("Mouse ScrollWheel") * 20);
             //cameraDistance += (Input.GetAxis("Mouse ScrollWheel") * 10);

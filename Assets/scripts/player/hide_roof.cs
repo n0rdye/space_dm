@@ -30,9 +30,15 @@ public class hide_roof : MonoBehaviour
 
             foreach (var item in other)
             {
-                tmp_color.a = 1f;
-                item.transform.gameObject.GetComponent<Renderer>().enabled = true;
-                item.GetComponent<Renderer>().material.color = tmp_color;
+                if (item.transform.gameObject.GetComponent<Renderer>().material.name == "roof (Instance)")
+                {
+                    item.transform.gameObject.GetComponent<Renderer>().enabled = true;
+                }
+                else if (item.transform.gameObject.GetComponent<Renderer>().material.name == "wall (Instance)")
+                {
+                    tmp_color.a = 1f;
+                    item.GetComponent<Renderer>().material.color = tmp_color;
+                }
             }
             foreach (var item in hitting)
             {
