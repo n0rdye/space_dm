@@ -10,13 +10,14 @@ public class trigger : MonoBehaviour
     public task_manager task;
     public string pop_up;
     public string item;
-    public bool wait;
     public float time;
     public float timer;
+    public string key_button;
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.SetActive(false);
+        pop_up = pop_up.Replace("/n", " \n ");
     }
 
     // Update is called once per frame
@@ -44,7 +45,8 @@ public class trigger : MonoBehaviour
             task = inv.gameObject.GetComponent<task_manager>();
             if (!press_key)
             {
-                if (wait)
+                if (pop_up != "") { task.set_message(pop_up); }
+                if (time == 0)
                 {
                     if(timer >= time)
                     {
@@ -52,7 +54,7 @@ public class trigger : MonoBehaviour
                         task.set_message("");
                     }
                 }
-                else if (!wait)
+                else if (time != 0)
                 {
                     triggered = true;
                     task.set_message("");
@@ -68,14 +70,14 @@ public class trigger : MonoBehaviour
             timer += Time.deltaTime;
             if (press_key)
             {
-                task.set_message(pop_up);
-                if (Input.GetKeyDown(KeyCode.E))
+                if (pop_up != "") { task.set_message(pop_up); }
+                if (Input.GetKeyDown(key_button))
                 {
                     timer = 0;
                 }
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(key_button))
                 {
-                    if (wait)
+                    if (time == 0)
                     {
                         if (timer >= time)
                         {
@@ -83,13 +85,13 @@ public class trigger : MonoBehaviour
                             task.set_message("");
                         }
                     }
-                    else if (!wait)
+                    else if (time != 0)
                     {
                         triggered = true;
                         task.set_message("");
                     }
                 }
-                else if (Input.GetKeyUp(KeyCode.E))
+                else if (Input.GetKeyUp(key_button))
                 {
                     timer = 0;
                 }

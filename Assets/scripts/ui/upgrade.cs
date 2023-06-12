@@ -21,6 +21,8 @@ public class upgrade : MonoBehaviour
     public task_manager task;
     public enemy_manager enemy_manager;
 
+    public bool message;
+
     void Start()
     {
         weapon_stats_button = new Button[3];
@@ -68,7 +70,7 @@ public class upgrade : MonoBehaviour
     {
         if (other.gameObject.tag == "player")
         {
-            task.set_message("");
+            if (message) task.set_message("");
             inv.tab(false);
             ui_canvas.SetActive(false);
             pl_canvas.SetActive(false);
@@ -82,7 +84,8 @@ public class upgrade : MonoBehaviour
         {
             inv = other.gameObject.GetComponent<inventory>();
             task = inv.gameObject.GetComponent<task_manager>();
-            task.set_message("hold tab to open upgrade menu");
+            if (task.task_var.message == "") { message = true; }
+            if (message) task.set_message("hold tab to open upgrade menu");
         }
     }
 
@@ -100,14 +103,14 @@ public class upgrade : MonoBehaviour
                     inv.tab(true);
                     ui_canvas.SetActive(true);
                     pl_canvas.SetActive(true);
-                    task.set_message("");
+                    if (message) task.set_message("");
                 }
                 else 
                 {
                     inv.tab(false);
                     ui_canvas.SetActive(false);
                     pl_canvas.SetActive(false);
-                    task.set_message("hold tab to open upgrade menu");
+                    if (message) task.set_message("hold tab to open upgrade menu");
                 }
 
 

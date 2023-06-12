@@ -7,6 +7,7 @@ public class hide_roof : MonoBehaviour
 
     public Color hit_obj_color;
     public Color tmp_color;
+    //public Material tmp_color;
     public GameObject top;
 
     // Start is called before the first frame update
@@ -48,7 +49,7 @@ public class hide_roof : MonoBehaviour
                         item.transform.gameObject.GetComponent<Renderer>().enabled = false;
                         //tmp_color.a = 0;
                         //hit.collider.gameObject.GetComponent<Renderer>().material.ChangeAlpha(0.5);
-                        item.transform.gameObject.GetComponent<Renderer>().material.color = tmp_color;
+                        //item.transform.gameObject.GetComponent<Renderer>().material.color = tmp_color;
                         //hit_obj = hit.collider.gameObject;
                         //var MeshRenderer tmp = hit_obj.transform.GetComponent<MeshRenderer>();
                         //tmp.material.color = Color.black;

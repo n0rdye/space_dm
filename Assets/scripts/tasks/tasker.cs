@@ -84,7 +84,11 @@ public class tasker : MonoBehaviour
                             min = enemy.transform;
                         }
                     }
+                    try
+                    {
                     compas.obj = min;
+
+                    }catch { }
                 }
                 else if (task.type == task.types.pick_up && System.Array.IndexOf(tasks, task) == manager.task_var.curr_task)
                 {

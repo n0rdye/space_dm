@@ -565,7 +565,7 @@ MonoBehaviour:
   version: {fileID: 48268178}
   loadingPanel: {fileID: 1513220715}
   loadingText: {fileID: 446543264}
-  load_lvl: dm
+  load_lvl: tutorial
 --- !u!4 &1166377983
 Transform:
   m_ObjectHideFlags: 0
