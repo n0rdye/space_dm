@@ -65,7 +65,7 @@ public class task_manager : MonoBehaviour
                 new save_load().savet(task_var);
             }
         }
-        catch (System.NullReferenceException)
+        catch
         {
             Debug.Log("all taks complited");
         }

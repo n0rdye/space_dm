@@ -9,7 +9,7 @@ public class enemy_manager : MonoBehaviour
     public map_lvl lvl_var;
     public GameObject[] enemies;
     public Transform[] spawns;
-    public GameObject nenemy_pref;
+    public GameObject[] enemy_pref;
     public int kills = -1;
     public float map_enemies;
 
@@ -59,12 +59,12 @@ public class enemy_manager : MonoBehaviour
                 {
                     try
                     {
-                        var tmp_enemy = Instantiate(nenemy_pref, lvl_var.enemies_pos[i], Quaternion.identity);
+                        var tmp_enemy = Instantiate(enemy_pref[Random.Range(0,enemy_pref.Length-1)], lvl_var.enemies_pos[i], Quaternion.identity);
                         tmp_enemy.transform.parent = transform;
                     }
                     catch
                     {
-                        var tmp_enemy = Instantiate(nenemy_pref, spawns[(int)Random.Range(0, spawns.Length)].position, Quaternion.identity);
+                        var tmp_enemy = Instantiate(enemy_pref[Random.Range(0,enemy_pref.Length-1)], spawns[(int)Random.Range(0, spawns.Length)].position, Quaternion.identity);
                         tmp_enemy.transform.parent = transform;
                     }
                 }
@@ -73,7 +73,7 @@ public class enemy_manager : MonoBehaviour
             {
                 for (int i = 0; i <= lvl_var.max_enemies - 1; i++)
                 {
-                    var tmp_enemy = Instantiate(nenemy_pref, spawns[(int)Random.Range(0, spawns.Length)].position, Quaternion.identity);
+                    var tmp_enemy = Instantiate(enemy_pref[Random.Range(0,enemy_pref.Length-1)], spawns[(int)Random.Range(0, spawns.Length)].position, Quaternion.identity);
                     tmp_enemy.transform.parent = transform;
                 }
             }
@@ -91,7 +91,7 @@ public class enemy_manager : MonoBehaviour
 
         for (int i = 0; i <= count-1; i++)
         {
-            var tmp_enemy = Instantiate(nenemy_pref, new Vector3(pos.x * rendom_pos(0.5f,2),0, pos.z * rendom_pos(0.5f, 2)), Quaternion.identity);
+            var tmp_enemy = Instantiate(enemy_pref[Random.Range(0,enemy_pref.Length-1)], new Vector3(pos.x * rendom_pos(0.5f,2),0, pos.z * rendom_pos(0.5f, 2)), Quaternion.identity);
             tmp_enemy.transform.parent = transform;
         }
 
